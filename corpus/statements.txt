@@ -516,6 +516,25 @@ func main() {
     (block (call_expression (identifier) (interpreted_string_literal))))))
 
 ============================================
+Labels with blocks
+============================================
+
+package main
+
+func main() {
+  Foo: {
+         return;
+       }
+}
+
+---
+
+(source_file
+  (package_clause (package_identifier))
+  (function_declaration (identifier) (parameters)
+    (block (label_statement (label_name) (block (return_statement))))))
+
+============================================
 Labels at the ends of statement blocks
 ============================================
 
