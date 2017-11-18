@@ -7,6 +7,7 @@ const
     comparative: 3,
     and: 2,
     or: 1,
+    label: 1,
     composite_literal: -1,
   },
 
@@ -406,7 +407,7 @@ module.exports = grammar({
       $.expression_list
     ),
 
-    label_statement: $ => seq(alias($.identifier, $.label_name), ':'),
+    label_statement: $ => prec.left(PREC.label, seq(alias($.identifier, $.label_name), ':', optional($._statement))),
 
     fallthrough_statement: $ => 'fallthrough',
 
