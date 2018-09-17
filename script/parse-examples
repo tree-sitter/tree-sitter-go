@@ -4,6 +4,8 @@ set -e
 
 cd "$(dirname "$0")/.."
 
+git submodule update --init --recursive
+
 all_examples=$(find examples -name '*.go' | egrep -v 'go/test|testdata')
 known_failures=$(cat script/known-failures.txt | egrep -v '^#')
 
