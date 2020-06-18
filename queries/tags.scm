@@ -1,31 +1,31 @@
 (
     (comment)* @doc
     (function_declaration
-        name: (identifier) @name) @function
+        name: (identifier) @name) @definition.function
     (#strip! @doc "^//\\s*")
-    (#set-adjacent! @doc @function)
+    (#set-adjacent! @doc @definition.function)
 )
 
 (
     (comment)* @doc
     (method_declaration
-        name: (field_identifier) @name) @method
+        name: (field_identifier) @name) @definition.method
     (#strip! @doc "^//\\s*")
-    (#set-adjacent! @doc @method)
+    (#set-adjacent! @doc @definition.method)
 )
 
 (call_expression
-    function: (identifier) @name) @call
+    function: (identifier) @name) @reference.call
 
 (call_expression
     function: (selector_expression
-        field: (field_identifier) @name)) @call
+        field: (field_identifier) @name)) @reference.call
 
 (call_expression
     function: (parenthesized_expression
-        (identifier) @name)) @call
+        (identifier) @name)) @reference.call
 
 (call_expression
     function: (parenthesized_expression
         (selector_expression
-            field: (field_identifier) @name))) @call
+            field: (field_identifier) @name))) @reference.call
