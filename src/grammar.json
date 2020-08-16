@@ -6438,6 +6438,10 @@
       "type": "STRING",
       "value": "false"
     },
+    "iota": {
+      "type": "STRING",
+      "value": "iota"
+    },
     "comment": {
       "type": "TOKEN",
       "content": {
