@@ -22,6 +22,7 @@ known_failures="$(cat script/known-failures.txt | egrep -v '^#')"
 
 time tree-sitter parse -q \
   'examples/**/*.go'  \
+  'examples/**/go.mod'  \
   '!**/testdata/**/*' \
   '!**/go/test/**/*'  \
   $(for failure in $known_failures; do echo "!${failure}"; done)

@@ -1,0 +1,11 @@
+==================
+Go directive comment
+==================
+
+go 1.14
+
+---
+
+(source_file
+	(go_directive
+		(go_version)))

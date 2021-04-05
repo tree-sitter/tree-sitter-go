@@ -1,0 +1,49 @@
+==================
+Require directive
+==================
+
+require cloud.google.com/go v0.76.0
+
+---
+
+(source_file
+	(require_directive
+		(require_spec
+			(module_path)
+			(version))))
+
+==================
+Require directive parens
+==================
+
+require (
+		cloud.google.com/go v0.76.0
+)
+
+---
+
+(source_file
+	(require_directive
+		(require_spec
+			(module_path)
+			(version))))
+
+==================
+Require directive parens multiple
+==================
+
+require (
+		cloud.google.com/go v0.76.0
+		cloud.google.com/go v0.76.0
+)
+
+---
+
+(source_file
+	(require_directive
+		(require_spec
+			(module_path)
+			(version))
+		(require_spec
+			(module_path)
+			(version))))

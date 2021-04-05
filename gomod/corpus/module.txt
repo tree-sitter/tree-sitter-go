@@ -1,0 +1,41 @@
+==================
+Module directive no parens
+==================
+
+module golang.org/x/net
+
+---
+
+(source_file
+	(module_directive
+		(module_path)))
+
+==================
+Module directive parens
+==================
+
+module (
+	golang.org/x/net
+)
+
+---
+
+(source_file
+	(module_directive
+		(module_path)))
+
+
+==================
+Module directive comment
+==================
+
+module (
+	golang.org/x/net // inline
+)
+
+---
+
+(source_file
+	(module_directive
+		(module_path)
+		(comment)))

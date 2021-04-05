@@ -1,0 +1,36 @@
+==================
+Exclude directive
+==================
+
+exclude golang.org/x/net v1.2.3
+
+---
+
+(source_file
+	(exclude_directive
+		(exclude_spec
+			(module_path)
+			(version))))
+
+==================
+Exclude directive parens
+==================
+
+
+exclude (
+    golang.org/x/crypto v1.4.5
+    golang.org/x/text v1.6.7
+)
+
+
+---
+
+(source_file
+	(exclude_directive
+		(exclude_spec
+			(module_path)
+			(version))
+		(exclude_spec
+			(module_path)
+			(version))))
+

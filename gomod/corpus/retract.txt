@@ -1,0 +1,45 @@
+==================
+Retract directive
+==================
+
+retract v1.0.0
+
+---
+
+(source_file
+	(retract_directive
+		(retract_spec
+			(version))))
+
+==================
+Retract range
+==================
+
+retract [v1.0.0, v1.9.9]
+
+---
+
+(source_file
+	(retract_directive
+		(retract_spec
+			(version)
+			(version))))
+
+==================
+Retract multi
+==================
+
+retract (
+    v1.0.0
+    [v1.0.0, v1.9.9]
+)
+
+---
+
+(source_file
+	(retract_directive
+		(retract_spec
+			(version))
+		(retract_spec
+			(version)
+			(version))))

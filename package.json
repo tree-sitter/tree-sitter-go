@@ -16,8 +16,10 @@
     "tree-sitter-cli": "^0.19.1"
   },
   "scripts": {
-    "build": "tree-sitter generate && node-gyp build",
-    "test": "tree-sitter test && script/parse-examples",
+    "build": "tree-sitter generate && node-gyp build && npm run build-gomod",
+    "build-gomod": "cd gomod && tree-sitter generate && node-gyp build",
+    "test": "tree-sitter test && script/parse-examples && npm run test-gomod",
+    "test-gomod": "cd gomod && tree-sitter test",
     "test-windows": "tree-sitter test"
   },
   "tree-sitter": [
@@ -25,6 +27,16 @@
       "scope": "source.go",
       "file-types": [
         "go"
+      ]
+    },
+    {
+      "scope": "source.go.mod",
+      "file-types": [
+        "go.mod"
+      ],
+      "path": "gomod",
+      "highlights": [
+        "./gomod/queries/highlights.scm"
       ]
     }
   ]
