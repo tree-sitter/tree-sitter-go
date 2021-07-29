@@ -19,7 +19,10 @@
 
 (type_identifier) @type
 (field_identifier) @property
-(identifier) @variable
+(short_var_declaration left: (expression_list (identifier) @variable))
+(var_declaration (var_spec name: (identifier) @variable))
+(parameter_declaration name: (identifier) @variable)
+(const_declaration (const_spec name: (identifier) @variable))
 
 ; Operators
 
