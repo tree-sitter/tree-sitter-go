@@ -24,9 +24,10 @@ OBJ := $(addsuffix .o,$(basename $(SRC)))
 SONAME_MAJOR := 0
 SONAME_MINOR := 0
 
-CPPFLAGS ?= -O3 -Wall -Wextra -Werror
-override CFLAGS += -std=gnu99
-override CPPFLAGS += -fPIC
+CFLAGS ?= -O3 -Wall -Wextra -Werror
+CXXFLAGS ?= -O3 -Wall -Wextra -Werror
+override CFLAGS += -std=gnu99 -fPIC
+override CXXFLAGS += -fPIC
 
 # OS-specific bits
 ifeq ($(shell uname),Darwin)
