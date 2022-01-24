@@ -1,6 +1,10 @@
 ; Function calls
 
 (call_expression
+  function: (identifier) @function.builtin
+    (.match? @function.builtin "append|copy|delete|len|cap|make|new|complex|real|imag|close|panic|recover|print|println"))
+
+(call_expression
   function: (identifier) @function)
 
 (call_expression
