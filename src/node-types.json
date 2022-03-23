@@ -1591,7 +1591,7 @@
     "fields": {
       "body": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "block",
@@ -1704,6 +1704,16 @@
     "type": "parameter_declaration",
     "named": true,
     "fields": {
+      "ellipsis": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "...",
+            "named": false
+          }
+        ]
+      },
       "name": {
         "multiple": true,
         "required": false,

@@ -657,16 +657,8 @@
             "type": "FIELD",
             "name": "body",
             "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "block"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "block"
             }
           }
         ]
@@ -884,8 +876,20 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "..."
+          "type": "FIELD",
+          "name": "ellipsis",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "..."
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
         },
         {
           "type": "FIELD",
