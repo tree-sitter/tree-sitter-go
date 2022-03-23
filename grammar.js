@@ -217,27 +217,27 @@ module.exports = grammar({
 
     type_parameter_list: $ => seq(
       '[',
-      commaSep1($.parameter_declaration),
+      commaSep1($.type_parameter_declaration),
       optional(','),
       ']'
+    ),
+
+    type_parameter_declaration: $ => seq(
+      commaSep1(field('name', $.identifier)),
+      field('type', $.constraint_elem)
     ),
 
     parameter_list: $ => seq(
       '(',
       optional(seq(
-        commaSep(choice($.parameter_declaration, $.variadic_parameter_declaration)),
+        commaSep($.parameter_declaration),
         optional(',')
       )),
       ')'
     ),
 
     parameter_declaration: $ => seq(
-      field('name', commaSep($.identifier)),
-      field('type', $._type)
-    ),
-
-    variadic_parameter_declaration: $ => seq(
-      field('name', optional($.identifier)),
+      commaSep(field('name', $.identifier)),
       '...',
       field('type', $._type)
     ),

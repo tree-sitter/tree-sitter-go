@@ -1709,10 +1709,6 @@
         "required": false,
         "types": [
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "identifier",
             "named": true
           }
@@ -1740,10 +1736,6 @@
       "types": [
         {
           "type": "parameter_declaration",
-          "named": true
-        },
-        {
-          "type": "variadic_parameter_declaration",
           "named": true
         }
       ]
@@ -2235,6 +2227,32 @@
     }
   },
   {
+    "type": "type_parameter_declaration",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constraint_elem",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "type_parameter_list",
     "named": true,
     "fields": {},
@@ -2243,7 +2261,7 @@
       "required": true,
       "types": [
         {
-          "type": "parameter_declaration",
+          "type": "type_parameter_declaration",
           "named": true
         }
       ]
@@ -2453,32 +2471,6 @@
           "named": true
         }
       ]
-    }
-  },
-  {
-    "type": "variadic_parameter_declaration",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "type": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "_type",
-            "named": true
-          }
-        ]
-      }
     }
   },
   {
