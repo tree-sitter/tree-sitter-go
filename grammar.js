@@ -84,10 +84,9 @@ module.exports = grammar({
     [$.qualified_type, $._expression],
     [$.generic_type, $._expression],
     [$.generic_type, $._simple_type],
-    [$.parameter_declaration, $.type_arguments],
-    [$.parameter_declaration, $._simple_type, $._expression],
-    [$.parameter_declaration, $.generic_type, $._expression],
-    [$.parameter_declaration, $._expression],
+    [$.type_parameter_declaration, $._simple_type, $._expression],
+    [$.type_parameter_declaration, $.generic_type, $._expression],
+    [$.type_parameter_declaration, $._expression],
     [$.func_literal, $.function_type],
     [$.function_type],
     [$.parameter_declaration, $._simple_type],
@@ -364,18 +363,26 @@ module.exports = grammar({
       'interface',
       '{',
       optional(seq(
-        $._interface_body,
-        repeat(seq(terminator, $._interface_body)),
+        $._interface_elem,
+        repeat(seq(terminator, $._interface_elem)),
         optional(terminator)
       )),
       '}'
     ),
 
-    _interface_body: $ => choice(
-       $.method_spec, $.interface_type_name, $.constraint_elem
-    ),
+    _interface_elem: $ => choice($.method_spec, $.type_elem),
 
     interface_type_name: $ => choice($._type_identifier, $.qualified_type),
+
+    type_elem: $ => seq(
+      $.type_term,
+      repeat(seq('|', $.type_term))
+    ),
+
+    type_term: $ => seq(
+      optional('~'),
+      $._type,
+    ),
 
     constraint_elem: $ => seq(
       $.constraint_term,
@@ -384,7 +391,7 @@ module.exports = grammar({
 
     constraint_term: $ => prec(-1, seq(
       optional('~'),
-      $._type_identifier,
+      $._type,
     )),
 
     method_spec: $ => seq(
