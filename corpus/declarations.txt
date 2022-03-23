@@ -312,7 +312,7 @@ func f3(...bool) {}
   (function_declaration
     (identifier)
     (parameter_list
-      (variadic_parameter_declaration
+      (parameter_declaration
         (identifier)
         (pointer_type (type_identifier))))
     (block))
@@ -322,14 +322,14 @@ func f3(...bool) {}
       (parameter_declaration
         (identifier)
         (type_identifier))
-      (variadic_parameter_declaration
+      (parameter_declaration
         (identifier)
         (type_identifier)))
     (block))
   (function_declaration
     (identifier)
     (parameter_list
-      (variadic_parameter_declaration (type_identifier)))
+      (parameter_declaration (type_identifier)))
     (block)))
 
 ============================================

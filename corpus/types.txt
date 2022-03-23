@@ -201,7 +201,7 @@ type SignedInteger interface {
         (field_identifier)
           (parameter_list
             (parameter_declaration (type_identifier))
-            (variadic_parameter_declaration (type_identifier))) (type_identifier)))))
+            (parameter_declaration (type_identifier))) (type_identifier)))))
   (type_declaration (type_spec
     (type_identifier)
     (interface_type (constraint_elem
@@ -314,7 +314,7 @@ type (
       (function_type
         (parameter_list
           (parameter_declaration (type_identifier))
-          (variadic_parameter_declaration
+          (parameter_declaration
             (pointer_type (type_identifier))))
         (type_identifier)))))
 
