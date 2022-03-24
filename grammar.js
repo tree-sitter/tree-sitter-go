@@ -345,7 +345,7 @@ module.exports = grammar({
     field_declaration: $ => seq(
       choice(
         seq(
-          field('name', commaSep1($._field_identifier)),
+          commaSep1(field('name', $._field_identifier)),
           field('type', $._type)
         ),
         seq(
