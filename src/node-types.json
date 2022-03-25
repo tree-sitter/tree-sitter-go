@@ -751,7 +751,7 @@
       "required": true,
       "types": [
         {
-          "type": "type_identifier",
+          "type": "_type",
           "named": true
         }
       ]
@@ -1439,34 +1439,11 @@
       "required": false,
       "types": [
         {
-          "type": "constraint_elem",
-          "named": true
-        },
-        {
-          "type": "interface_type_name",
-          "named": true
-        },
-        {
           "type": "method_spec",
           "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "interface_type_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "qualified_type",
-          "named": true
         },
         {
-          "type": "type_identifier",
+          "type": "type_elem",
           "named": true
         }
       ]
@@ -1700,6 +1677,16 @@
     "type": "parameter_declaration",
     "named": true,
     "fields": {
+      "ellipsis": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "...",
+            "named": false
+          }
+        ]
+      },
       "name": {
         "multiple": true,
         "required": false,
@@ -1732,10 +1719,6 @@
       "types": [
         {
           "type": "parameter_declaration",
-          "named": true
-        },
-        {
-          "type": "variadic_parameter_declaration",
           "named": true
         }
       ]
@@ -2227,6 +2210,47 @@
     }
   },
   {
+    "type": "type_elem",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "type_term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_parameter_declaration",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constraint_elem",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "type_parameter_list",
     "named": true,
     "fields": {},
@@ -2235,7 +2259,7 @@
       "required": true,
       "types": [
         {
-          "type": "parameter_declaration",
+          "type": "type_parameter_declaration",
           "named": true
         }
       ]
@@ -2322,6 +2346,21 @@
         },
         {
           "type": "type_case",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_term",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "_type",
           "named": true
         }
       ]
@@ -2445,32 +2484,6 @@
           "named": true
         }
       ]
-    }
-  },
-  {
-    "type": "variadic_parameter_declaration",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "type": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "_type",
-            "named": true
-          }
-        ]
-      }
     }
   },
   {

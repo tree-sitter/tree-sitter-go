@@ -243,8 +243,7 @@ func f1() {}
 func f2(a File, b, c, d Thing) int {}
 func f2() (File, Thing) {}
 func f2() (result int, err error) {}
-func f(x ... int, y ... int)
-func g1[T, U any, V interface{}, W Foo[Bar[T]]](a Foo[T]) {}
+func f() (x ... int, y ... int)
 func g1[T, U any, V interface{}, W Foo[Bar[T]]](a Foo[T]) {}
 func f[A int|string, B ~int, C ~int|~string]()
 
@@ -292,32 +291,39 @@ func f[A int|string, B ~int, C ~int|~string]()
     (block))
   (function_declaration
     (identifier)
+    (parameter_list)
     (parameter_list
-      (variadic_parameter_declaration
+      (parameter_declaration
         (identifier)
         (type_identifier))
-      (variadic_parameter_declaration
+      (parameter_declaration
         (identifier)
         (type_identifier))))
   (function_declaration
     (identifier)
     (type_parameter_list
-      (parameter_declaration
+      (type_parameter_declaration
         (identifier)
         (identifier)
-        (type_identifier))
-      (parameter_declaration
+        (constraint_elem
+          (constraint_term
+            (type_identifier))))
+      (type_parameter_declaration
         (identifier)
-        (interface_type))
-      (parameter_declaration
+        (constraint_elem
+          (constraint_term
+            (interface_type))))
+      (type_parameter_declaration
         (identifier)
-        (generic_type
-          (type_identifier)
-          (type_arguments
+        (constraint_elem
+          (constraint_term
             (generic_type
               (type_identifier)
               (type_arguments
-                (type_identifier)))))))
+                (generic_type
+                  (type_identifier)
+                  (type_arguments
+                    (type_identifier)))))))))
     (parameter_list
       (parameter_declaration
         (identifier)
@@ -329,47 +335,25 @@ func f[A int|string, B ~int, C ~int|~string]()
   (function_declaration
     (identifier)
     (type_parameter_list
-      (parameter_declaration
+      (type_parameter_declaration
         (identifier)
+        (constraint_elem
+          (constraint_term
+            (type_identifier))
+          (constraint_term
+            (type_identifier))))
+      (type_parameter_declaration
         (identifier)
-        (type_identifier))
-      (parameter_declaration
+        (constraint_elem
+          (constraint_term
+            (type_identifier))))
+      (type_parameter_declaration
         (identifier)
-        (interface_type))
-      (parameter_declaration
-        (identifier)
-        (generic_type
-          (type_identifier)
-          (type_arguments
-            (generic_type
-              (type_identifier)
-              (type_arguments
-                (type_identifier)))))))
-    (parameter_list
-      (parameter_declaration
-        (identifier)
-        (generic_type
-          (type_identifier)
-          (type_arguments
+        (constraint_elem
+          (constraint_term
+            (type_identifier))
+          (constraint_term
             (type_identifier)))))
-    (block))
-  (function_declaration
-    (identifier)
-    (type_parameter_list
-      (parameter_declaration
-        (identifier)
-        (ERROR
-          (identifier))
-        (type_identifier))
-      (parameter_declaration
-        (identifier)
-        (ERROR)
-        (type_identifier))
-      (parameter_declaration
-        (identifier)
-        (ERROR
-          (identifier))
-        (type_identifier)))
     (parameter_list)))
 
 ================================================================================
@@ -433,7 +417,7 @@ func f3(...bool) {}
   (function_declaration
     (identifier)
     (parameter_list
-      (variadic_parameter_declaration
+      (parameter_declaration
         (identifier)
         (pointer_type
           (type_identifier))))
@@ -444,14 +428,14 @@ func f3(...bool) {}
       (parameter_declaration
         (identifier)
         (type_identifier))
-      (variadic_parameter_declaration
+      (parameter_declaration
         (identifier)
         (type_identifier)))
     (block))
   (function_declaration
     (identifier)
     (parameter_list
-      (variadic_parameter_declaration
+      (parameter_declaration
         (type_identifier)))
     (block)))
 
@@ -489,7 +473,7 @@ func (v *Value) ObjxMap(optionalDefault ...(Map)) Map {}
           (type_identifier))))
     (field_identifier)
     (parameter_list
-      (variadic_parameter_declaration
+      (parameter_declaration
         (identifier)
         (parenthesized_type
           (type_identifier))))
