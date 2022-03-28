@@ -224,69 +224,60 @@ Indexing expressions
 
 package main
 
-func main() {
+var (
   _ = a[1]
   _ = b[:]
   _ = c[1:]
   _ = d[1:2]
   _ = e[:2:3]
   _ = f[1:2:3]
-}
+)
 
 --------------------------------------------------------------------------------
 
 (source_file
   (package_clause
     (package_identifier))
-  (function_declaration
-    (identifier)
-    (parameter_list)
-    (block
-      (assignment_statement
-        (expression_list
-          (identifier))
-        (expression_list
-          (index_expression
-            (identifier)
-            (int_literal))))
-      (assignment_statement
-        (expression_list
-          (identifier))
-        (expression_list
-          (slice_expression
-            (identifier))))
-      (assignment_statement
-        (expression_list
-          (identifier))
-        (expression_list
-          (slice_expression
-            (identifier)
-            (int_literal))))
-      (assignment_statement
-        (expression_list
-          (identifier))
-        (expression_list
-          (slice_expression
-            (identifier)
-            (int_literal)
-            (int_literal))))
-      (assignment_statement
-        (expression_list
-          (identifier))
-        (expression_list
-          (slice_expression
-            (identifier)
-            (int_literal)
-            (int_literal))))
-      (assignment_statement
-        (expression_list
-          (identifier))
-        (expression_list
-          (slice_expression
-            (identifier)
-            (int_literal)
-            (int_literal)
-            (int_literal)))))))
+  (var_declaration
+    (var_spec
+      (identifier)
+      (expression_list
+        (index_expression
+          (identifier)
+          (int_literal))))
+    (var_spec
+      (identifier)
+      (expression_list
+        (slice_expression
+          (identifier))))
+    (var_spec
+      (identifier)
+      (expression_list
+        (slice_expression
+          (identifier)
+          (int_literal))))
+    (var_spec
+      (identifier)
+      (expression_list
+        (slice_expression
+          (identifier)
+          (int_literal)
+          (int_literal))))
+    (var_spec
+      (identifier)
+      (expression_list
+        (slice_expression
+          (identifier)
+          (int_literal)
+          (int_literal))))
+    (var_spec
+      (identifier)
+      (expression_list
+        (slice_expression
+          (identifier)
+          (int_literal)
+          (int_literal)
+          (int_literal))))))
 
 ================================================================================
 Type assertion expressions

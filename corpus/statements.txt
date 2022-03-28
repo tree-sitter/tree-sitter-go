@@ -849,5 +849,7 @@ x := T { a: b }
         (type_identifier)
         (literal_value
           (keyed_element
-            (field_identifier)
-            (identifier)))))))
+            (literal_element
+              (identifier))
+            (literal_element
+              (identifier))))))))
