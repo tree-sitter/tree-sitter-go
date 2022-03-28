@@ -79,6 +79,12 @@ module.exports = grammar({
 
   word: $ => $.identifier,
 
+  // Go is essentially LL(1), but this grammar intentionally accepts
+  // statements (and thus expressions) at top-level, without a package
+  // declaration, to support snippets of code appearing in documentation.
+  // This leads to numerous ambiguities. Notably 'func (id) id' could be
+  // a method declaration or a type at the start of the expression T{...}
+  // or T(x).
   conflicts: $ => [
     [$._simple_type, $._expression],
     [$.qualified_type, $._expression],
@@ -454,7 +460,7 @@ module.exports = grammar({
     empty_statement: $ => ';',
 
     _simple_statement: $ => choice(
-      $._expression,
+      $.expression_statement, 
       $.send_statement,
       $.inc_statement,
       $.dec_statement,
@@ -462,12 +468,19 @@ module.exports = grammar({
       $.short_var_declaration
     ),
 
+    // We accept any expression as a statement, though a compiler would
+    // allow only a call or receive expression, optionally parenthesized.
+    expression_statement: $ => $._expression,
+    
     send_statement: $ => seq(
       field('channel', $._expression),
       '<-',
       field('value', $._expression)
     ),
 
+    // 'x = <-ch' is ordinarily represented as an assignment_statement
+    // (or short_var_declaration for 'x := <-ch') whose right side is a receive
+    // unary_expression, but within a select case it has this special form.
     receive_statement: $ => seq(
       optional(seq(
         field('left', $.expression_list),
@@ -663,6 +676,8 @@ module.exports = grammar({
       ')'
     ),
 
+    // A unary function call (fmt.Println(x)) cannot always be distinguished from
+    // a type_conversion_expression (unsafe.Pointer(x)) without type information.
     call_expression: $ => prec(PREC.primary, choice(
       seq(
         field('function', alias(choice('new', 'make'), $.identifier)),
