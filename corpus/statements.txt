@@ -96,9 +96,9 @@ func main() {
     (identifier)
     (parameter_list)
     (block
-      (inc_statement
+      (incdec_statement
         (identifier))
-      (dec_statement
+      (incdec_statement
         (identifier)))))
 
 ================================================================================
@@ -220,9 +220,8 @@ func main() {
     (parameter_list)
     (block
       (short_var_declaration
-        (expression_list
-          (identifier)
-          (identifier))
+        (identifier)
+        (identifier)
         (expression_list
           (int_literal)
           (int_literal))))))
@@ -274,8 +273,7 @@ func main() {
             arguments: (argument_list))))
       (if_statement
         initializer: (short_var_declaration
-          left: (expression_list
-            (identifier))
+          left: (identifier)
           right: (expression_list
             (call_expression
               function: (identifier)
@@ -367,14 +365,13 @@ loop2:
         (for_statement
           (for_clause
             (short_var_declaration
-              (expression_list
-                (identifier))
+              (identifier)
               (expression_list
                 (int_literal)))
             (binary_expression
               (identifier)
               (int_literal))
-            (inc_statement
+            (incdec_statement
               (identifier)))
           (block
             (call_expression
@@ -389,7 +386,7 @@ loop2:
             (binary_expression
               (identifier)
               (int_literal))
-            (inc_statement
+            (incdec_statement
               (identifier)))
           (block
             (call_expression
@@ -476,8 +473,7 @@ func main() {
           (return_statement)))
       (expression_switch_statement
         initializer: (short_var_declaration
-          left: (expression_list
-            (identifier))
+          left: (identifier)
           right: (expression_list
             (call_expression
               function: (identifier)
@@ -811,8 +807,7 @@ x := T { a: b }
     (argument_list
       (int_literal)))
   (short_var_declaration
-    (expression_list
-      (identifier))
+    (identifier)
     (expression_list
       (composite_literal
         (type_identifier)

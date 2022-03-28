@@ -106,11 +106,7 @@
         "named": true
       },
       {
-        "type": "dec_statement",
-        "named": true
-      },
-      {
-        "type": "inc_statement",
+        "type": "incdec_statement",
         "named": true
       },
       {
@@ -696,10 +692,6 @@
         "required": true,
         "types": [
           {
-            "type": ",",
-            "named": false
-          },
-          {
             "type": "identifier",
             "named": true
           }
@@ -767,21 +759,6 @@
       "types": [
         {
           "type": "label_name",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "dec_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
           "named": true
         }
       ]
@@ -1371,9 +1348,24 @@
     }
   },
   {
-    "type": "inc_statement",
+    "type": "incdec_statement",
     "named": true,
-    "fields": {},
+    "fields": {
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "++",
+            "named": false
+          },
+          {
+            "type": "--",
+            "named": false
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": false,
       "required": true,
@@ -1947,11 +1939,11 @@
     "named": true,
     "fields": {
       "left": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "expression_list",
+            "type": "identifier",
             "named": true
           }
         ]
@@ -2151,10 +2143,6 @@
         "multiple": true,
         "required": true,
         "types": [
-          {
-            "type": ",",
-            "named": false
-          },
           {
             "type": "_type",
             "named": true
@@ -2392,10 +2380,6 @@
         "multiple": true,
         "required": true,
         "types": [
-          {
-            "type": ",",
-            "named": false
-          },
           {
             "type": "identifier",
             "named": true

@@ -91,6 +91,7 @@ module.exports = grammar({
     [$.func_literal, $.function_type],
     [$.function_type],
     [$.parameter_declaration, $._simple_type],
+    [$.short_var_declaration, $._expression], // identifier  •  ','
   ],
 
   supertypes: $ => [
@@ -168,7 +169,7 @@ module.exports = grammar({
     ),
 
     const_spec: $ => prec.left(seq(
-      field('name', commaSep1($.identifier)),
+      commaSep1(field('name', $.identifier)),
       optional(seq(
         optional(field('type', $._type)),
         '=',
@@ -189,7 +190,7 @@ module.exports = grammar({
     ),
 
     var_spec: $ => seq(
-      field('name', commaSep1($.identifier)),
+      commaSep1(field('name', $.identifier)),
       choice(
         seq(
           field('type', $._type),
@@ -456,8 +457,7 @@ module.exports = grammar({
     _simple_statement: $ => choice(
       $._expression,
       $.send_statement,
-      $.inc_statement,
-      $.dec_statement,
+      $.incdec_statement,
       $.assignment_statement,
       $.short_var_declaration
     ),
@@ -476,14 +476,9 @@ module.exports = grammar({
       field('right', $._expression)
     ),
 
-    inc_statement: $ => seq(
+    incdec_statement: $ => seq(
       $._expression,
-      '++'
-    ),
-
-    dec_statement: $ => seq(
-      $._expression,
-      '--'
+      field('operator', choice('++', '--'))
     ),
 
     assignment_statement: $ => seq(
@@ -493,9 +488,7 @@ module.exports = grammar({
     ),
 
     short_var_declaration: $ => seq(
-      // TODO: this should really only allow identifier lists, but that causes
-      // conflicts between identifiers as expressions vs identifiers here.
-      field('left', $.expression_list),
+      commaSep1(field('left', $.identifier)),
       ':=',
       field('right', $.expression_list)
     ),
@@ -613,7 +606,7 @@ module.exports = grammar({
 
     type_case: $ => seq(
       'case',
-      field('type', commaSep1($._type)),
+      commaSep1(field('type', $._type)),
       ':',
       optional($._statement_list)
     ),
