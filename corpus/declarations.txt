@@ -477,3 +477,61 @@ type (
     (type_spec
       (type_identifier)
       (type_identifier))))
+
+================================================================================
+Reuse of predeclared names
+================================================================================
+
+func make(new, old int) int { return new-old }
+
+type T struct {
+	new, make, nil, true, false, iota bool
+}
+
+func (T) append() {}
+func (T) string() {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (identifier)
+    (parameter_list
+      (parameter_declaration
+        (identifier)
+        (identifier)
+        (type_identifier)))
+    (type_identifier)
+    (block
+      (return_statement
+        (expression_list
+          (binary_expression
+            (identifier)
+            (identifier))))))
+  (type_declaration
+    (type_spec
+      (type_identifier)
+      (struct_type
+        (field_declaration_list
+          (field_declaration
+            (field_identifier)
+            (field_identifier)
+            (field_identifier)
+            (field_identifier)
+            (field_identifier)
+            (field_identifier)
+            (type_identifier))))))
+  (method_declaration
+    (parameter_list
+      (parameter_declaration
+        (type_identifier)))
+    (field_identifier)
+    (parameter_list)
+    (block))
+  (method_declaration
+    (parameter_list
+      (parameter_declaration
+        (type_identifier)))
+    (field_identifier)
+    (parameter_list)
+    (block)))
