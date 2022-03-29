@@ -6,7 +6,7 @@ package main
 
 func main() {
   var x = y
-  const x = 5
+  const x = 5  
 }
 
 --------------------------------------------------------------------------------
@@ -207,7 +207,9 @@ Short var declarations
 package main
 
 func main() {
-  a, b := 1, 2
+  a, b, new := 1, 2, 3
+  a, new, b := 1, 2, 3
+  new, a, b := 1, 2, 3
 }
 
 --------------------------------------------------------------------------------
@@ -222,7 +224,25 @@ func main() {
       (short_var_declaration
         (identifier)
         (identifier)
+        (identifier)
         (expression_list
+          (int_literal)
+          (int_literal)
+          (int_literal)))
+      (short_var_declaration
+        (identifier)
+        (identifier)
+        (identifier)
+        (expression_list
+          (int_literal)
+          (int_literal)
+          (int_literal)))
+      (short_var_declaration
+        (identifier)
+        (identifier)
+        (identifier)
+        (expression_list
+          (int_literal)
           (int_literal)
           (int_literal))))))
 

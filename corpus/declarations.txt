@@ -245,8 +245,6 @@ func f2() (File, Thing) {}
 func f2() (result int, err error) {}
 func f(x ... int, y ... int)
 func g1[T, U any, V interface{}, W Foo[Bar[T]]](a Foo[T]) {}
-func g1[T, U any, V interface{}, W Foo[Bar[T]]](a Foo[T]) {}
-func f[A int|string, B ~int, C ~int|~string]()
 
 --------------------------------------------------------------------------------
 
@@ -325,52 +323,7 @@ func f[A int|string, B ~int, C ~int|~string]()
           (type_identifier)
           (type_arguments
             (type_identifier)))))
-    (block))
-  (function_declaration
-    (identifier)
-    (type_parameter_list
-      (parameter_declaration
-        (identifier)
-        (identifier)
-        (type_identifier))
-      (parameter_declaration
-        (identifier)
-        (interface_type))
-      (parameter_declaration
-        (identifier)
-        (generic_type
-          (type_identifier)
-          (type_arguments
-            (generic_type
-              (type_identifier)
-              (type_arguments
-                (type_identifier)))))))
-    (parameter_list
-      (parameter_declaration
-        (identifier)
-        (generic_type
-          (type_identifier)
-          (type_arguments
-            (type_identifier)))))
-    (block))
-  (function_declaration
-    (identifier)
-    (type_parameter_list
-      (parameter_declaration
-        (identifier)
-        (ERROR
-          (identifier))
-        (type_identifier))
-      (parameter_declaration
-        (identifier)
-        (ERROR)
-        (type_identifier))
-      (parameter_declaration
-        (identifier)
-        (ERROR
-          (identifier))
-        (type_identifier)))
-    (parameter_list)))
+    (block)))
 
 ================================================================================
 Single-line function declarations

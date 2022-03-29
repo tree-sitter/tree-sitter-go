@@ -468,6 +468,10 @@ module.exports = grammar({
       field('value', $._expression)
     ),
 
+    // Semantically equivalent to:
+    //   (assignment_statement  @left  '=' (unary_expression '<-' @right))
+    // or:
+    //   (short_var_declaration @left ':=' (unary_expression '<-' @right))
     receive_statement: $ => seq(
       optional(seq(
         field('left', $.expression_list),
@@ -481,6 +485,8 @@ module.exports = grammar({
       field('operator', choice('++', '--'))
     ),
 
+    // The LHS of an assignment is restricted to:
+    //  lhs = id | '*' expr | expr '[' expr ']' | expr '.' id | '(' lhs ')'
     assignment_statement: $ => seq(
       field('left', $.expression_list),
       field('operator', choice(...assignment_operators)),
@@ -635,7 +641,6 @@ module.exports = grammar({
       $.type_assertion_expression,
       $.type_conversion_expression,
       $.identifier,
-      alias(choice('new', 'make'), $.identifier),
       $.composite_literal,
       $.func_literal,
       $._string_literal,
@@ -656,16 +661,10 @@ module.exports = grammar({
       ')'
     ),
 
-    call_expression: $ => prec(PREC.primary, choice(
-      seq(
-        field('function', alias(choice('new', 'make'), $.identifier)),
-        field('arguments', alias($.special_argument_list, $.argument_list))
-      ),
-      seq(
-        field('function', $._expression),
-        field('type_arguments', optional($.type_arguments)),
-        field('arguments', $.argument_list)
-      )
+    call_expression: $ => prec(PREC.primary, seq(
+      field('function', $._expression),
+      field('type_arguments', optional($.type_arguments)),
+      field('arguments', $.argument_list)
     )),
 
     variadic_argument: $ => prec.right(seq(
@@ -684,7 +683,7 @@ module.exports = grammar({
     argument_list: $ => seq(
       '(',
       optional(seq(
-        choice($._expression, $.variadic_argument),
+        choice($._expression, $.variadic_argument, $._type), // allow type for new(T) and make(T, len, cap)
         repeat(seq(',', choice($._expression, $.variadic_argument))),
         optional(',')
       )),
