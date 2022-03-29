@@ -16,10 +16,6 @@
         "named": true
       },
       {
-        "type": "false",
-        "named": true
-      },
-      {
         "type": "float_literal",
         "named": true
       },
@@ -48,14 +44,6 @@
         "named": true
       },
       {
-        "type": "iota",
-        "named": true
-      },
-      {
-        "type": "nil",
-        "named": true
-      },
-      {
         "type": "parenthesized_expression",
         "named": true
       },
@@ -73,10 +61,6 @@
       },
       {
         "type": "slice_expression",
-        "named": true
-      },
-      {
-        "type": "true",
         "named": true
       },
       {
@@ -2674,10 +2658,6 @@
     "named": false
   },
   {
-    "type": "false",
-    "named": true
-  },
-  {
     "type": "field_identifier",
     "named": true
   },
@@ -2726,20 +2706,12 @@
     "named": false
   },
   {
-    "type": "iota",
-    "named": true
-  },
-  {
     "type": "label_name",
     "named": true
   },
   {
     "type": "map",
     "named": false
-  },
-  {
-    "type": "nil",
-    "named": true
   },
   {
     "type": "package",
@@ -2776,10 +2748,6 @@
   {
     "type": "switch",
     "named": false
-  },
-  {
-    "type": "true",
-    "named": true
   },
   {
     "type": "type",

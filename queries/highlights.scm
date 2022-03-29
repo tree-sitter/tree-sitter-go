@@ -109,11 +109,4 @@
   (imaginary_literal)
 ] @number
 
-[
-  (true)
-  (false)
-  (nil)
-  (iota)
-] @constant.builtin
-
 (comment) @comment

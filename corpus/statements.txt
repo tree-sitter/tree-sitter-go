@@ -489,7 +489,7 @@ func main() {
       (expression_switch_statement
         (expression_case
           value: (expression_list
-            (true))
+            (identifier))
           (return_statement)))
       (expression_switch_statement
         initializer: (short_var_declaration

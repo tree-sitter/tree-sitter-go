@@ -3178,22 +3178,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "nil"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "true"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "false"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "iota"
-        },
-        {
-          "type": "SYMBOL",
           "name": "parenthesized_expression"
         }
       ]
@@ -6597,22 +6581,6 @@
           }
         ]
       }
-    },
-    "nil": {
-      "type": "STRING",
-      "value": "nil"
-    },
-    "true": {
-      "type": "STRING",
-      "value": "true"
-    },
-    "false": {
-      "type": "STRING",
-      "value": "false"
-    },
-    "iota": {
-      "type": "STRING",
-      "value": "iota"
     },
     "comment": {
       "type": "TOKEN",

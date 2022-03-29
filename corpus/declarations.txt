@@ -111,7 +111,7 @@ const (
     (const_spec
       (identifier)
       (expression_list
-        (iota)))
+        (identifier)))
     (const_spec
       (identifier))
     (const_spec
