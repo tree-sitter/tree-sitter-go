@@ -91,6 +91,7 @@ module.exports = grammar({
     [$.func_literal, $.function_type],
     [$.function_type],
     [$.parameter_declaration, $._simple_type],
+    [$.short_var_declaration, $._expression], // identifier  •  ','
   ],
 
   supertypes: $ => [
@@ -168,7 +169,7 @@ module.exports = grammar({
     ),
 
     const_spec: $ => prec.left(seq(
-      field('name', commaSep1($.identifier)),
+      commaSep1(field('name', $.identifier)),
       optional(seq(
         optional(field('type', $._type)),
         '=',
@@ -189,7 +190,7 @@ module.exports = grammar({
     ),
 
     var_spec: $ => seq(
-      field('name', commaSep1($.identifier)),
+      commaSep1(field('name', $.identifier)),
       choice(
         seq(
           field('type', $._type),
@@ -456,8 +457,7 @@ module.exports = grammar({
     _simple_statement: $ => choice(
       $._expression,
       $.send_statement,
-      $.inc_statement,
-      $.dec_statement,
+      $.incdec_statement,
       $.assignment_statement,
       $.short_var_declaration
     ),
@@ -468,6 +468,10 @@ module.exports = grammar({
       field('value', $._expression)
     ),
 
+    // Semantically equivalent to:
+    //   (assignment_statement  @left  '=' (unary_expression '<-' @right))
+    // or:
+    //   (short_var_declaration @left ':=' (unary_expression '<-' @right))
     receive_statement: $ => seq(
       optional(seq(
         field('left', $.expression_list),
@@ -476,16 +480,13 @@ module.exports = grammar({
       field('right', $._expression)
     ),
 
-    inc_statement: $ => seq(
+    incdec_statement: $ => seq(
       $._expression,
-      '++'
+      field('operator', choice('++', '--'))
     ),
 
-    dec_statement: $ => seq(
-      $._expression,
-      '--'
-    ),
-
+    // The LHS of an assignment is restricted to:
+    //  lhs = id | '*' expr | expr '[' expr ']' | expr '.' id | '(' lhs ')'
     assignment_statement: $ => seq(
       field('left', $.expression_list),
       field('operator', choice(...assignment_operators)),
@@ -493,9 +494,7 @@ module.exports = grammar({
     ),
 
     short_var_declaration: $ => seq(
-      // TODO: this should really only allow identifier lists, but that causes
-      // conflicts between identifiers as expressions vs identifiers here.
-      field('left', $.expression_list),
+      commaSep1(field('left', $.identifier)),
       ':=',
       field('right', $.expression_list)
     ),
@@ -613,7 +612,7 @@ module.exports = grammar({
 
     type_case: $ => seq(
       'case',
-      field('type', commaSep1($._type)),
+      commaSep1(field('type', $._type)),
       ':',
       optional($._statement_list)
     ),
@@ -642,7 +641,6 @@ module.exports = grammar({
       $.type_assertion_expression,
       $.type_conversion_expression,
       $.identifier,
-      alias(choice('new', 'make'), $.identifier),
       $.composite_literal,
       $.func_literal,
       $._string_literal,
@@ -650,10 +648,6 @@ module.exports = grammar({
       $.float_literal,
       $.imaginary_literal,
       $.rune_literal,
-      $.nil,
-      $.true,
-      $.false,
-      $.iota,
       $.parenthesized_expression
     ),
 
@@ -663,16 +657,10 @@ module.exports = grammar({
       ')'
     ),
 
-    call_expression: $ => prec(PREC.primary, choice(
-      seq(
-        field('function', alias(choice('new', 'make'), $.identifier)),
-        field('arguments', alias($.special_argument_list, $.argument_list))
-      ),
-      seq(
-        field('function', $._expression),
-        field('type_arguments', optional($.type_arguments)),
-        field('arguments', $.argument_list)
-      )
+    call_expression: $ => prec(PREC.primary, seq(
+      field('function', $._expression),
+      field('type_arguments', optional($.type_arguments)),
+      field('arguments', $.argument_list)
     )),
 
     variadic_argument: $ => prec.right(seq(
@@ -691,7 +679,7 @@ module.exports = grammar({
     argument_list: $ => seq(
       '(',
       optional(seq(
-        choice($._expression, $.variadic_argument),
+        choice($._expression, $.variadic_argument, $._type), // allow type for new(T) and make(T, len, cap)
         repeat(seq(',', choice($._expression, $.variadic_argument))),
         optional(',')
       )),
@@ -879,11 +867,6 @@ module.exports = grammar({
       ),
       "'"
     )),
-
-    nil: $ => 'nil',
-    true: $ => 'true',
-    false: $ => 'false',
-    iota: $ => 'iota',
 
     // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
     comment: $ => token(choice(
