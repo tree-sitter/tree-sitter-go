@@ -839,11 +839,22 @@ module.exports = grammar({
       '"',
       repeat(choice(
         $._interpreted_string_literal_basic_content,
+        $.format_verb,
         $.escape_sequence
       )),
       '"'
     ),
     _interpreted_string_literal_basic_content: $ => token.immediate(prec(1, /[^"\n\\]+/)),
+
+    // Trying to implement something for golang format verbs
+    // https://pkg.go.dev/fmt
+    // TODO: add in a format verb catcher
+    format_verb: $ => token.immediate(seq(
+      '%',
+      choice(
+        /(?i)[a-z]/,
+      )
+    )),
 
     escape_sequence: $ => token.immediate(seq(
       '\\',
