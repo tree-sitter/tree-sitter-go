@@ -1462,7 +1462,11 @@
       "required": false,
       "types": [
         {
-          "type": "escape_sequence",
+          "type": "escape_seq",
+          "named": true
+        },
+        {
+          "type": "format_verb",
           "named": true
         }
       ]
@@ -2682,7 +2686,7 @@
     "named": false
   },
   {
-    "type": "escape_sequence",
+    "type": "escape_seq",
     "named": true
   },
   {
@@ -2704,6 +2708,10 @@
   {
     "type": "for",
     "named": false
+  },
+  {
+    "type": "format_verb",
+    "named": true
   },
   {
     "type": "func",

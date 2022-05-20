@@ -840,7 +840,7 @@ module.exports = grammar({
       repeat(choice(
         $._interpreted_string_literal_basic_content,
         $.format_verb,
-        $.escape_sequence
+        $.escape_seq
       )),
       '"'
     ),
@@ -851,12 +851,10 @@ module.exports = grammar({
     // TODO: add in a format verb catcher
     format_verb: $ => token.immediate(seq(
       '%',
-      choice(
-        /(?i)[a-z]/,
-      )
+      /[a-z, A-Z]/,
     )),
 
-    escape_sequence: $ => token.immediate(seq(
+    escape_seq: $ => token.immediate(seq(
       '\\',
       choice(
         /[^xuU]/,
