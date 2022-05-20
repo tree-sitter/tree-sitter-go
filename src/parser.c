@@ -4480,10 +4480,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 142:
       ACCEPT_TOKEN(sym__interpreted_string_literal_basic_content);
-      if (lookahead == ' ' ||
-          lookahead == ',' ||
-          ('A' <= lookahead && lookahead <= 'Z') ||
-          ('a' <= lookahead && lookahead <= 'z')) ADVANCE(143);
+      if (('a' <= lookahead && lookahead <= 'z')) ADVANCE(143);
       if (lookahead != 0 &&
           lookahead != '\n' &&
           lookahead != '"' &&

@@ -849,10 +849,7 @@ module.exports = grammar({
     // Trying to implement something for golang format verbs
     // https://pkg.go.dev/fmt
     // TODO: add in a format verb catcher
-    format_verb: $ => token.immediate(seq(
-      '%',
-      /[a-z, A-Z]/,
-    )),
+    format_verb: $ => token.immediate(/%[a-z]/),
 
     escape_seq: $ => token.immediate(seq(
       '\\',

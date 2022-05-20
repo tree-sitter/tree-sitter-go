@@ -4387,17 +4387,8 @@
     "format_verb": {
       "type": "IMMEDIATE_TOKEN",
       "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "%"
-          },
-          {
-            "type": "PATTERN",
-            "value": "[a-z, A-Z]"
-          }
-        ]
+        "type": "PATTERN",
+        "value": "%[a-z]"
       }
     },
     "escape_seq": {
