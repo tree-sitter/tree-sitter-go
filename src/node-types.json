@@ -1462,7 +1462,7 @@
       "required": false,
       "types": [
         {
-          "type": "escape_seq",
+          "type": "escape_sequence",
           "named": true
         },
         {
@@ -2686,7 +2686,7 @@
     "named": false
   },
   {
-    "type": "escape_seq",
+    "type": "escape_sequence",
     "named": true
   },
   {

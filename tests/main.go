@@ -4,5 +4,5 @@ import "fmt"
 
 func main() {
 	word := "world"
-	fmt.Printf("%s\n", word)
+	fmt.Printf("This is a %% string %T\n", word)
 }

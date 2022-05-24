@@ -4362,7 +4362,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "escape_seq"
+                "name": "escape_sequence"
               }
             ]
           }
@@ -4380,18 +4380,32 @@
         "value": 1,
         "content": {
           "type": "PATTERN",
-          "value": "[^\"\\n\\\\]+"
+          "value": "[^\"\\n\\\\%]+"
         }
       }
     },
     "format_verb": {
       "type": "IMMEDIATE_TOKEN",
       "content": {
-        "type": "PATTERN",
-        "value": "%[a-z]"
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "%"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[a-x,A-X,%]"
+              }
+            ]
+          }
+        ]
       }
     },
-    "escape_seq": {
+    "escape_sequence": {
       "type": "IMMEDIATE_TOKEN",
       "content": {
         "type": "SEQ",

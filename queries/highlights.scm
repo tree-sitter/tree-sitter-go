@@ -102,6 +102,7 @@
 ] @string
 
 (escape_sequence) @escape
+(format_verb) @format_verb
 
 [
   (int_literal)
