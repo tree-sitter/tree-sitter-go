@@ -297,6 +297,7 @@ const (
   a = "0"
   b = "`\"`"
   c = "\x0c"
+  d = "Test%s test %+v %+#t %.19f %2s %+$d %Ttest %% %%s %%%s %"
 )
 
 --------------------------------------------------------------------------------
@@ -318,7 +319,18 @@ const (
       (identifier)
       (expression_list
         (interpreted_string_literal
-          (escape_sequence))))))
+          (escape_sequence))))
+    (const_spec
+      (identifier)
+      (expression_list
+        (interpreted_string_literal
+          (format_verb)
+          (format_verb)
+          (format_verb)
+          (format_verb)
+          (format_verb)
+          (format_verb)
+          (format_verb))))))
 
 ================================================================================
 Slice literals

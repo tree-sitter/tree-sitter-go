@@ -4358,7 +4358,15 @@
               },
               {
                 "type": "SYMBOL",
+                "name": "_interpreted_string_literal_percent_sign"
+              },
+              {
+                "type": "SYMBOL",
                 "name": "escape_sequence"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "format_verb"
               }
             ]
           }
@@ -4376,8 +4384,24 @@
         "value": 1,
         "content": {
           "type": "PATTERN",
-          "value": "[^\"\\n\\\\]+"
+          "value": "[^\"\\n\\\\%]+"
         }
+      }
+    },
+    "_interpreted_string_literal_percent_sign": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "%"
+          },
+          {
+            "type": "PATTERN",
+            "value": "%%"
+          }
+        ]
       }
     },
     "escape_sequence": {
@@ -4413,6 +4437,46 @@
                 "value": "U[0-9a-fA-F]{8}"
               }
             ]
+          }
+        ]
+      }
+    },
+    "format_verb": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "%"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[-+#]*"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[\\d]*[\\.]*[\\d]*"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "PATTERN",
+            "value": "[vTtbcdoOqxXUeEfFgGxXsqp]"
           }
         ]
       }

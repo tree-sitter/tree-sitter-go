@@ -839,11 +839,14 @@ module.exports = grammar({
       '"',
       repeat(choice(
         $._interpreted_string_literal_basic_content,
-        $.escape_sequence
+        $._interpreted_string_literal_percent_sign,
+        $.escape_sequence,
+        $.format_verb
       )),
       '"'
     ),
-    _interpreted_string_literal_basic_content: $ => token.immediate(prec(1, /[^"\n\\]+/)),
+    _interpreted_string_literal_basic_content: $ => token.immediate(prec(1, /[^"\n\\%]+/)),
+    _interpreted_string_literal_percent_sign: ($) => token.immediate(choice(/%/, /%%/)),
 
     escape_sequence: $ => token.immediate(seq(
       '\\',
@@ -855,6 +858,8 @@ module.exports = grammar({
         /U[0-9a-fA-F]{8}/
       )
     )),
+
+    format_verb: ($) => token.immediate(seq('%', optional(/[-+#]*/), optional(/[\d]*[\.]*[\d]*/), /[vTtbcdoOqxXUeEfFgGxXsqp]/)),
 
     int_literal: $ => token(intLiteral),
 

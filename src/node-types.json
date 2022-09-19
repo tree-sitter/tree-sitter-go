@@ -1464,6 +1464,10 @@
         {
           "type": "escape_sequence",
           "named": true
+        },
+        {
+          "type": "format_verb",
+          "named": true
         }
       ]
     }
@@ -2704,6 +2708,10 @@
   {
     "type": "for",
     "named": false
+  },
+  {
+    "type": "format_verb",
+    "named": true
   },
   {
     "type": "func",

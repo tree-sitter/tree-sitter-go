@@ -754,7 +754,7 @@ func main() {
   for i, v := range vectors {
     func() {
       if v == v {
-        fmt.Println("something: %v", vectors[i])
+        fmt.Println("something: ", vectors[i])
       }
     }()
   }
