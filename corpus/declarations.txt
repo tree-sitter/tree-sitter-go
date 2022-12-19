@@ -403,30 +403,30 @@ func f3() { a(); b(); }
   (function_declaration
     (identifier)
     (parameter_list)
-    (block
+    (block (statement_list
       (call_expression
         (identifier)
-        (argument_list))))
+        (argument_list)))))
   (function_declaration
     (identifier)
     (parameter_list)
-    (block
-      (call_expression
-        (identifier)
-        (argument_list))
-      (call_expression
-        (identifier)
-        (argument_list))))
-  (function_declaration
-    (identifier)
-    (parameter_list)
-    (block
+    (block (statement_list
       (call_expression
         (identifier)
         (argument_list))
       (call_expression
         (identifier)
         (argument_list)))))
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block (statement_list
+      (call_expression
+        (identifier)
+        (argument_list))
+      (call_expression
+        (identifier)
+        (argument_list))))))
 
 ================================================================================
 Variadic function declarations

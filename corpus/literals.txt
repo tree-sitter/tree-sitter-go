@@ -547,8 +547,8 @@ const s1 = func(s string) (int, int) {
               (type_identifier))
             (parameter_declaration
               (type_identifier)))
-          (block
+          (block (statement_list
             (return_statement
               (expression_list
                 (int_literal)
-                (int_literal)))))))))
+                (int_literal))))))))))
