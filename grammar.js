@@ -686,7 +686,7 @@ module.exports = grammar({
 
     special_argument_list: $ => seq(
       '(',
-      $._type,
+      choice($._type, $.composite_literal),
       repeat(seq(',', $._expression)),
       optional(','),
       ')'
