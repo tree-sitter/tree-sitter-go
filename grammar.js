@@ -27,6 +27,30 @@ const
   comparative_operators = ['==', '!=', '<', '<=', '>', '>='],
   assignment_operators = multiplicative_operators.concat(additive_operators).map(operator => operator + '=').concat('='),
 
+  builtin_types = [
+    'any',
+    'bool',
+    'byte',
+    'complex64',
+    'complex128',
+    'error',
+    'float32',
+    'float64',
+    'int',
+    'int8',
+    'int16',
+    'int32',
+    'int64',
+    'rune',
+    'string',
+    'uint',
+    'uint8',
+    'uint16',
+    'uint32',
+    'uint64',
+    'uintptr',
+  ],
+
 
   newline = '\n',
   terminator = choice(newline, ';', '\0'),
@@ -763,12 +787,21 @@ module.exports = grammar({
       ')',
     )),
 
-    type_conversion_expression: $ => prec.dynamic(-1, seq(
-      field('type', $._type),
-      '(',
-      field('operand', $._expression),
-      optional(','),
-      ')',
+    type_conversion_expression: $ => prec.dynamic(-1, choice(
+      seq(
+        field('type',
+          alias(choice(...builtin_types), $.type_identifier)),
+        '(',
+        field('operand', $._expression),
+        ')',
+      ),
+      seq(
+        field('type', $._type),
+        '(',
+        field('operand', $._expression),
+        optional(','),
+        ')',
+      ),
     )),
 
     composite_literal: $ => prec(PREC.composite_literal, seq(

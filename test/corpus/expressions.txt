@@ -333,6 +333,9 @@ func main() {
   (*Point)(p)
   e.f(g)
   (e.f)(g)
+  int64(5)
+  string('h')
+  byte('w')
 }
 
 --------------------------------------------------------------------------------
@@ -413,7 +416,19 @@ func main() {
               (identifier)
               (field_identifier)))
           (argument_list
-            (identifier)))))))
+            (identifier))))
+      (expression_statement
+        (type_conversion_expression
+          (type_identifier)
+          (int_literal)))
+      (expression_statement
+        (type_conversion_expression
+          (type_identifier)
+          (rune_literal)))
+      (expression_statement
+        (type_conversion_expression
+          (type_identifier)
+          (rune_literal))))))
 
 ================================================================================
 Unary expressions
