@@ -333,9 +333,11 @@ func main() {
   (*Point)(p)
   e.f(g)
   (e.f)(g)
-  int64(5)
-  string('h')
+  // These type conversions are distinguishable as they're to builtin types
+  _ = complex64(5)
+  complex128(5)
   byte('w')
+  error(e)
 }
 
 --------------------------------------------------------------------------------
@@ -417,6 +419,14 @@ func main() {
               (field_identifier)))
           (argument_list
             (identifier))))
+      (comment)
+      (assignment_statement
+        (expression_list
+          (identifier))
+        (expression_list
+          (type_conversion_expression
+            (type_identifier)
+            (int_literal))))
       (expression_statement
         (type_conversion_expression
           (type_identifier)
@@ -428,7 +438,7 @@ func main() {
       (expression_statement
         (type_conversion_expression
           (type_identifier)
-          (rune_literal))))))
+          (identifier))))))
 
 ================================================================================
 Unary expressions
