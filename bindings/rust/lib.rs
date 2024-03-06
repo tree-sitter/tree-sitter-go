@@ -18,7 +18,7 @@
 //!     }
 //! "#;
 //! let mut parser = Parser::new();
-//! parser.set_language(tree_sitter_go::language()).expect("Error loading Go grammar");
+//! parser.set_language(&tree_sitter_go::language()).expect("Error loading Go grammar");
 //! let parsed = parser.parse(code, None).unwrap();
 //! let root = parsed.root_node();
 //! assert!(!root.has_error());
@@ -62,7 +62,7 @@ mod tests {
     fn can_load_grammar() {
         let mut parser = tree_sitter::Parser::new();
         parser
-            .set_language(super::language())
+            .set_language(&super::language())
             .expect("Error loading Go grammar");
     }
 }

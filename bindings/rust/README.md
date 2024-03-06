@@ -8,8 +8,8 @@ way.)
 
 ```toml
 [dependencies]
-tree-sitter = "0.20.10"
-tree-sitter-go = "0.20.0"
+tree-sitter = "0.21.0"
+tree-sitter-go = "0.21.0"
 ```
 
 Typically, you will use the [language][language] function to add this
