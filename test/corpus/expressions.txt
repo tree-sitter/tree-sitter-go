@@ -151,6 +151,10 @@ func main() {
   new(map[string]string)
 }
 
+func fake_new(new func() int) int {
+  return new()
+}
+
 --------------------------------------------------------------------------------
 
 (source_file
@@ -194,7 +198,22 @@ func main() {
           (argument_list
             (map_type
               (type_identifier)
-              (type_identifier))))))))
+              (type_identifier)))))))
+  (function_declaration
+    (identifier)
+    (parameter_list
+      (parameter_declaration
+        (identifier)
+        (function_type
+          (parameter_list)
+          (type_identifier))))
+    (type_identifier)
+    (block
+      (return_statement
+        (expression_list
+          (call_expression
+            (identifier)
+            (argument_list)))))))
 
 ================================================================================
 Selector expressions
