@@ -2453,11 +2453,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
           "type": "var_spec",
+          "named": true
+        },
+        {
+          "type": "var_spec_list",
           "named": true
         }
       ]
@@ -2471,10 +2475,6 @@
         "multiple": true,
         "required": true,
         "types": [
-          {
-            "type": ",",
-            "named": false
-          },
           {
             "type": "identifier",
             "named": true
@@ -2501,6 +2501,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "var_spec_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "var_spec",
+          "named": true
+        }
+      ]
     }
   },
   {
