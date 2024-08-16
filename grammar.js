@@ -195,7 +195,7 @@ module.exports = grammar({
     ),
 
     var_spec: $ => seq(
-      field('name', commaSep1($.identifier)),
+      commaSep1(field('name', $.identifier)),
       choice(
         seq(
           field('type', $._type),
