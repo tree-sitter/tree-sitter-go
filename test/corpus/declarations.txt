@@ -224,14 +224,15 @@ var (
   (package_clause
     (package_identifier))
   (var_declaration
-    (var_spec
-      (identifier)
-      (expression_list
-        (int_literal)))
-    (var_spec
-      (identifier)
-      (expression_list
-        (int_literal)))))
+    (var_spec_list
+      (var_spec
+        (identifier)
+        (expression_list
+          (int_literal)))
+      (var_spec
+        (identifier)
+        (expression_list
+          (int_literal))))))
 
 ================================================================================
 Function declarations
