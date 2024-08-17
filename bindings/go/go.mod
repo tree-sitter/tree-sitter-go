@@ -1,4 +1,4 @@
-module github.com/tree-sitter/tree-sitter-go
+module github.com/tree-sitter/tree-sitter-go/bindings/go
 
 go 1.22
 
