@@ -1,4 +1,4 @@
-VERSION := 0.21.2
+VERSION := 0.23.0
 
 LANGUAGE_NAME := tree-sitter-go
 
