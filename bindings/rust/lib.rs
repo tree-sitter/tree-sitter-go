@@ -12,7 +12,10 @@
 //! }
 //! "#;
 //! let mut parser = Parser::new();
-//! parser.set_language(&tree_sitter_go::language()).expect("Error loading Go grammar");
+//! let language = tree_sitter_go::LANGUAGE;
+//! parser
+//!     .set_language(&language.into())
+//!     .expect("Error loading Go parser");
 //! let tree = parser.parse(code, None).unwrap();
 //! assert!(!tree.root_node().has_error());
 //! ```
@@ -22,18 +25,14 @@
 //! [Parser]: https://docs.rs/tree-sitter/*/tree_sitter/struct.Parser.html
 //! [tree-sitter]: https://tree-sitter.github.io/
 
-use tree_sitter::Language;
+use tree_sitter_language::LanguageFn;
 
 extern "C" {
-    fn tree_sitter_go() -> Language;
+    fn tree_sitter_go() -> *const ();
 }
 
-/// Get the tree-sitter [Language][] for this grammar.
-///
-/// [Language]: https://docs.rs/tree-sitter/*/tree_sitter/struct.Language.html
-pub fn language() -> Language {
-    unsafe { tree_sitter_go() }
-}
+/// The tree-sitter [`LanguageFn`] for this grammar.
+pub const LANGUAGE: LanguageFn = unsafe { LanguageFn::from_raw(tree_sitter_go) };
 
 /// The content of the [`node-types.json`][] file for this grammar.
 ///
@@ -52,7 +51,7 @@ mod tests {
     fn test_can_load_grammar() {
         let mut parser = tree_sitter::Parser::new();
         parser
-            .set_language(&super::language())
-            .expect("Error loading Go grammar");
+            .set_language(&super::LANGUAGE.into())
+            .expect("Error loading Go parser");
     }
 }
