@@ -25,7 +25,7 @@ const comparativeOperators = ['==', '!=', '<', '<=', '>', '>='];
 const assignmentOperators = multiplicativeOperators.concat(additiveOperators).map(operator => operator + '=').concat('=');
 
 
-const newline = '\n';
+const newline = /\n/;
 const terminator = choice(newline, ';', '\0');
 
 const hexDigit = /[0-9a-fA-F]/;
