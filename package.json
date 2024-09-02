@@ -26,7 +26,7 @@
   ],
   "dependencies": {
     "node-addon-api": "^8.1.0",
-    "node-gyp-build": "^4.8.1"
+    "node-gyp-build": "^4.8.2"
   },
   "peerDependencies": {
     "tree-sitter": "^0.21.0"
@@ -39,14 +39,12 @@
   "devDependencies": {
     "eslint": "^8.57.0",
     "eslint-config-google": "^0.14.0",
-    "tree-sitter-cli": "^0.22.6",
+    "tree-sitter-cli": "^0.23.0",
     "prebuildify": "^6.0.1"
   },
   "scripts": {
     "install": "node-gyp-build",
-    "prebuildify": "prebuildify --napi --strip",
     "lint": "eslint grammar.js",
-    "parse": "tree-sitter parse",
     "prestart": "tree-sitter build --wasm",
     "start": "tree-sitter playground",
     "test": "node --test bindings/node/*_test.js"
