@@ -801,7 +801,11 @@ module.exports = grammar({
     // - a field identifier (when T is a struct), or
     // - a literal_element (when T is an array).
     // The first two cases cannot be distinguished without type information.
-    keyed_element: $ => seq($.literal_element, ':', $.literal_element),
+    keyed_element: $ => seq(
+      field('key', $.literal_element),
+      ':',
+      field('value', $.literal_element),
+    ),
 
     func_literal: $ => seq(
       'func',
