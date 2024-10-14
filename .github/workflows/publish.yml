@@ -9,6 +9,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  github:
+    uses: tree-sitter/workflows/.github/workflows/release.yml@main
   npm:
     uses: tree-sitter/workflows/.github/workflows/package-npm.yml@main
     secrets:
