@@ -22,7 +22,8 @@
     "prebuilds/**",
     "bindings/node/*",
     "queries/*",
-    "src/**"
+    "src/**",
+    "*.wasm"
   ],
   "dependencies": {
     "node-addon-api": "^8.2.1",
@@ -38,7 +39,7 @@
   },
   "devDependencies": {
     "eslint": "^9.12.0",
-    "eslint-config-google": "^0.14.0",
+    "eslint-config-treesitter": "^1.0.2",
     "tree-sitter-cli": "^0.24.3",
     "prebuildify": "^6.0.1"
   },
@@ -58,47 +59,5 @@
       "highlights": "queries/highlights.scm",
       "tags": "queries/tags.scm"
     }
-  ],
-  "eslintConfig": {
-    "env": {
-      "commonjs": true,
-      "es2021": true
-    },
-    "extends": "google",
-    "parserOptions": {
-      "ecmaVersion": "latest",
-      "sourceType": "module"
-    },
-    "rules": {
-      "arrow-parens": "off",
-      "camel-case": "off",
-      "indent": [
-        "error",
-        2,
-        {
-          "SwitchCase": 1
-        }
-      ],
-      "max-len": [
-        "error",
-        {
-          "code": 160,
-          "ignoreComments": true,
-          "ignoreUrls": true,
-          "ignoreStrings": true
-        }
-      ],
-      "spaced-comment": [
-        "warn",
-        "always",
-        {
-          "line": {
-            "markers": [
-              "/"
-            ]
-          }
-        }
-      ]
-    }
-  }
+  ]
 }
