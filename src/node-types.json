@@ -1446,6 +1446,10 @@
         {
           "type": "escape_sequence",
           "named": true
+        },
+        {
+          "type": "interpreted_string_literal_content",
+          "named": true
         }
       ]
     }
@@ -1836,6 +1840,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "raw_string_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "raw_string_literal_content",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2748,6 +2767,10 @@
     "named": false
   },
   {
+    "type": "`",
+    "named": false
+  },
+  {
     "type": "blank_identifier",
     "named": true
   },
@@ -2848,6 +2871,10 @@
     "named": false
   },
   {
+    "type": "interpreted_string_literal_content",
+    "named": true
+  },
+  {
     "type": "iota",
     "named": true
   },
@@ -2876,7 +2903,7 @@
     "named": false
   },
   {
-    "type": "raw_string_literal",
+    "type": "raw_string_literal_content",
     "named": true
   },
   {
