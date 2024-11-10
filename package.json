@@ -2,11 +2,17 @@
   "name": "tree-sitter-go",
   "version": "0.23.1",
   "description": "Go grammar for tree-sitter",
-  "repository": "github:tree-sitter/tree-sitter-go",
+  "repository": "https://github.com/tree-sitter/tree-sitter-go",
   "license": "MIT",
-  "author": "Max Brunsfeld <maxbrunsfeld@gmail.com>",
+  "author": {
+    "name": "Max Brunsfeld",
+    "email": "maxbrunsfeld@gmail.com"
+  },
   "contributors": [
-    "Amaan Qureshi <amaanq12@gmail.com>"
+    {
+      "name": "Amaan Qureshi",
+      "email": "amaanq12@gmail.com"
+    }
   ],
   "main": "bindings/node",
   "types": "bindings/node",
@@ -18,6 +24,7 @@
   ],
   "files": [
     "grammar.js",
+    "tree-sitter.json",
     "binding.gyp",
     "prebuilds/**",
     "bindings/node/*",
@@ -29,19 +36,19 @@
     "node-addon-api": "^8.2.1",
     "node-gyp-build": "^4.8.2"
   },
-  "peerDependencies": {
-    "tree-sitter": "^0.21.0"
-  },
-  "peerDependenciesMeta": {
-    "tree_sitter": {
-      "optional": true
-    }
-  },
   "devDependencies": {
     "eslint": "^9.12.0",
     "eslint-config-treesitter": "^1.0.2",
     "tree-sitter-cli": "^0.24.3",
     "prebuildify": "^6.0.1"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.21.1"
+  },
+  "peerDependenciesMeta": {
+    "tree-sitter": {
+      "optional": true
+    }
   },
   "scripts": {
     "install": "node-gyp-build",
@@ -49,15 +56,5 @@
     "prestart": "tree-sitter build --wasm",
     "start": "tree-sitter playground",
     "test": "node --test bindings/node/*_test.js"
-  },
-  "tree-sitter": [
-    {
-      "scope": "source.go",
-      "file-types": [
-        "go"
-      ],
-      "highlights": "queries/highlights.scm",
-      "tags": "queries/tags.scm"
-    }
-  ]
+  }
 }
