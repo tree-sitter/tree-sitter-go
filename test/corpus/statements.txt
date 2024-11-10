@@ -557,7 +557,8 @@ func main() {
             (call_expression
               function: (identifier)
               arguments: (argument_list
-                (interpreted_string_literal)))))
+                (interpreted_string_literal
+                  (interpreted_string_literal_content))))))
         (type_case
           type: (type_identifier)
           (expression_statement
@@ -590,13 +591,15 @@ func main() {
             (call_expression
               function: (identifier)
               arguments: (argument_list
-                (interpreted_string_literal)))))
+                (interpreted_string_literal
+                  (interpreted_string_literal_content))))))
         (default_case
           (expression_statement
             (call_expression
               function: (identifier)
               arguments: (argument_list
-                (interpreted_string_literal)))))))))
+                (interpreted_string_literal
+                  (interpreted_string_literal_content))))))))))
 
 ================================================================================
 Select statements
@@ -722,13 +725,15 @@ func main() {
           (call_expression
             (identifier)
             (argument_list
-              (interpreted_string_literal)))))
+              (interpreted_string_literal
+                (interpreted_string_literal_content))))))
       (block
         (expression_statement
           (call_expression
             (identifier)
             (argument_list
-              (interpreted_string_literal))))))))
+              (interpreted_string_literal
+                (interpreted_string_literal_content)))))))))
 
 ================================================================================
 Labels at the ends of statement blocks
@@ -820,7 +825,8 @@ func main() {
                             (identifier)
                             (field_identifier))
                           (argument_list
-                            (interpreted_string_literal)
+                            (interpreted_string_literal
+                              (interpreted_string_literal_content))
                             (index_expression
                               (identifier)
                               (identifier)))))))))

@@ -856,21 +856,20 @@ module.exports = grammar({
       $.interpreted_string_literal,
     ),
 
-    raw_string_literal: _ => token(seq(
+    raw_string_literal: $ => seq(
       '`',
-      repeat(/[^`]/),
+      alias(/[^`]*/, $.raw_string_literal_content),
       '`',
-    )),
+    ),
 
     interpreted_string_literal: $ => seq(
       '"',
       repeat(choice(
-        $._interpreted_string_literal_basic_content,
+        alias(token.immediate(prec(1, /[^"\n\\]+/)), $.interpreted_string_literal_content),
         $.escape_sequence,
       )),
       token.immediate('"'),
     ),
-    _interpreted_string_literal_basic_content: _ => token.immediate(prec(1, /[^"\n\\]+/)),
 
     escape_sequence: _ => token.immediate(seq(
       '\\',

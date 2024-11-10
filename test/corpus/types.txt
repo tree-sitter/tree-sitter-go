@@ -127,7 +127,8 @@ type g2[T, U any, V interface{}, W Foo[Bar[T]]] struct {}
           (field_declaration
             (field_identifier)
             (type_identifier)
-            (raw_string_literal))))))
+            (raw_string_literal
+              (raw_string_literal_content)))))))
   (type_declaration
     (type_spec
       (type_identifier)
