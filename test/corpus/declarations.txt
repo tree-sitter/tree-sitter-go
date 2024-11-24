@@ -250,6 +250,8 @@ func g1[T, U any, V interface{}, W Foo[Bar[T]]](a Foo[T]) {}
 func g2(a foo.bar[int]) {}
 func f[A int|string, B ~int, C ~int|~string]()
 func f2(a File, b, c, d Thing) int {}
+func f3([]string, int, map[int]int, error) {}
+func f4() ([]string, int, map[int]int, error) {}
 
 --------------------------------------------------------------------------------
 
@@ -414,6 +416,37 @@ func f2(a File, b, c, d Thing) int {}
         (identifier)
         (type_identifier)))
     (type_identifier)
+    (block))
+  (function_declaration
+    (identifier)
+    (parameter_list
+      (parameter_declaration
+        (slice_type
+          (type_identifier)))
+      (parameter_declaration
+        (type_identifier))
+      (parameter_declaration
+        (map_type
+          (type_identifier)
+          (type_identifier)))
+      (parameter_declaration
+        (type_identifier)))
+    (block))
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (parameter_list
+      (parameter_declaration
+        (slice_type
+          (type_identifier)))
+      (parameter_declaration
+        (type_identifier))
+      (parameter_declaration
+        (map_type
+          (type_identifier)
+          (type_identifier)))
+      (parameter_declaration
+        (type_identifier)))
     (block)))
 
 ================================================================================

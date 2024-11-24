@@ -246,10 +246,10 @@ module.exports = grammar({
       ')',
     ),
 
-    parameter_declaration: $ => prec.left(seq(
+    parameter_declaration: $ => seq(
       commaSep(field('name', $.identifier)),
       field('type', $._type),
-    )),
+    ),
 
     variadic_parameter_declaration: $ => seq(
       field('name', optional($.identifier)),
@@ -302,7 +302,7 @@ module.exports = grammar({
       $.interface_type,
       $.array_type,
       $.slice_type,
-      $.map_type,
+      prec.dynamic(3, $.map_type),
       $.channel_type,
       $.function_type,
       $.negated_type,
