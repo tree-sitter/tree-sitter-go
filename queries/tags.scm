@@ -29,7 +29,7 @@
 
 (type_identifier) @name @reference.type
 
-(package_clause (package identifier) @name)
+(package_clause "package" (package_identifier) @name)
 
 (type_declaration (type_spec name: (type_identifier) @name type: (interface_type)))
 
