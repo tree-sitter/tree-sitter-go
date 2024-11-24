@@ -297,7 +297,8 @@ const (
   a = "0"
   b = "`\"`"
   c = "\x0c"
-  d = "errorstring
+  d = `//`
+  e = "errorstring
   "
 )
 
@@ -310,7 +311,8 @@ const (
     (const_spec
       (identifier)
       (expression_list
-        (interpreted_string_literal (interpreted_string_literal_content))))
+        (interpreted_string_literal
+          (interpreted_string_literal_content))))
     (const_spec
       (identifier)
       (expression_list
@@ -323,6 +325,11 @@ const (
       (expression_list
         (interpreted_string_literal
           (escape_sequence))))
+    (const_spec
+      (identifier)
+      (expression_list
+        (raw_string_literal
+          (raw_string_literal_content))))
     (ERROR
       (identifier)
       (interpreted_string_literal_content))))

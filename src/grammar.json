@@ -4567,8 +4567,15 @@
         {
           "type": "ALIAS",
           "content": {
-            "type": "PATTERN",
-            "value": "[^`]*"
+            "type": "TOKEN",
+            "content": {
+              "type": "PREC",
+              "value": 1,
+              "content": {
+                "type": "PATTERN",
+                "value": "[^`]*"
+              }
+            }
           },
           "named": true,
           "value": "raw_string_literal_content"
