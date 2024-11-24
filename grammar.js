@@ -858,7 +858,7 @@ module.exports = grammar({
 
     raw_string_literal: $ => seq(
       '`',
-      alias(/[^`]*/, $.raw_string_literal_content),
+      alias(token(prec(1, /[^`]*/)), $.raw_string_literal_content),
       '`',
     ),
 
