@@ -6994,5 +6994,109 @@
     "_simple_type",
     "_statement",
     "_simple_statement"
-  ]
+  ],
+  "reserved": {
+    "global": [
+      {
+        "type": "STRING",
+        "value": "break"
+      },
+      {
+        "type": "STRING",
+        "value": "default"
+      },
+      {
+        "type": "STRING",
+        "value": "func"
+      },
+      {
+        "type": "STRING",
+        "value": "interface"
+      },
+      {
+        "type": "STRING",
+        "value": "select"
+      },
+      {
+        "type": "STRING",
+        "value": "case"
+      },
+      {
+        "type": "STRING",
+        "value": "defer"
+      },
+      {
+        "type": "STRING",
+        "value": "go"
+      },
+      {
+        "type": "STRING",
+        "value": "map"
+      },
+      {
+        "type": "STRING",
+        "value": "struct"
+      },
+      {
+        "type": "STRING",
+        "value": "chan"
+      },
+      {
+        "type": "STRING",
+        "value": "else"
+      },
+      {
+        "type": "STRING",
+        "value": "goto"
+      },
+      {
+        "type": "STRING",
+        "value": "package"
+      },
+      {
+        "type": "STRING",
+        "value": "switch"
+      },
+      {
+        "type": "STRING",
+        "value": "const"
+      },
+      {
+        "type": "STRING",
+        "value": "fallthrough"
+      },
+      {
+        "type": "STRING",
+        "value": "if"
+      },
+      {
+        "type": "STRING",
+        "value": "range"
+      },
+      {
+        "type": "STRING",
+        "value": "type"
+      },
+      {
+        "type": "STRING",
+        "value": "continue"
+      },
+      {
+        "type": "STRING",
+        "value": "for"
+      },
+      {
+        "type": "STRING",
+        "value": "import"
+      },
+      {
+        "type": "STRING",
+        "value": "return"
+      },
+      {
+        "type": "STRING",
+        "value": "var"
+      }
+    ]
+  }
 }
