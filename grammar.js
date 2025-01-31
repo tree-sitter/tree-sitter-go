@@ -95,6 +95,17 @@ module.exports = grammar({
     [$.type_parameter_declaration, $._simple_type, $.generic_type, $._expression],
   ],
 
+  reserved: {
+    global: $ => [
+      // https://go.dev/ref/spec#Keywords
+      'break', 'default', 'func', 'interface', 'select',
+      'case', 'defer', 'go', 'map', 'struct',
+      'chan', 'else', 'goto', 'package', 'switch',
+      'const', 'fallthrough', 'if', 'range', 'type',
+      'continue', 'for', 'import', 'return', 'var',
+    ],
+  },
+
   supertypes: $ => [
     $._expression,
     $._type,
