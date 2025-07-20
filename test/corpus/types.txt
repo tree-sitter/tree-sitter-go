@@ -467,6 +467,7 @@ type (
 	A4 = Value
 	A5 = Value
 )
+type G3[T any, C Constraint] = G4[T, string, C]
 
 --------------------------------------------------------------------------------
 
@@ -507,4 +508,25 @@ type (
       (type_identifier))
     (type_alias
       (type_identifier)
-      (type_identifier))))
+          (type_identifier)))
+      (type_declaration
+        (type_alias
+          (type_identifier)
+          (type_parameter_list
+            (type_parameter_declaration
+              (identifier)
+              (type_constraint
+                (type_identifier)))
+            (type_parameter_declaration
+              (identifier)
+              (type_constraint
+                (type_identifier))))
+          (generic_type
+            (type_identifier)
+            (type_arguments
+              (type_elem
+                (type_identifier))
+              (type_elem
+                (type_identifier))
+              (type_elem
+                (type_identifier)))))))
