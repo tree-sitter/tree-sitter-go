@@ -1,3 +1,9 @@
+; Identifiers
+
+(type_identifier) @type
+(field_identifier) @property
+(identifier) @variable
+
 ; Function calls
 
 (call_expression
@@ -18,12 +24,6 @@
 
 (method_declaration
   name: (field_identifier) @function.method)
-
-; Identifiers
-
-(type_identifier) @type
-(field_identifier) @property
-(identifier) @variable
 
 ; Operators
 
