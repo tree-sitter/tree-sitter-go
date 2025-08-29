@@ -30,15 +30,17 @@ func b() {
       (ERROR
         (identifier))
       (comment)
-      (if_statement
-        (binary_expression
-          (identifier)
-          (identifier))
-        (block
-          (expression_statement
-            (call_expression
-              (identifier)
-              (argument_list)))))))
+      (statement_list
+        (if_statement
+          (binary_expression
+            (identifier)
+            (identifier))
+          (block
+            (statement_list
+              (expression_statement
+                (call_expression
+                  (identifier)
+                  (argument_list)))))))))
   (function_declaration
     (identifier)
     (parameter_list)
@@ -46,12 +48,14 @@ func b() {
       (ERROR
         (identifier))
       (comment)
-      (expression_switch_statement
-        (identifier)
-        (expression_case
-          (expression_list
-            (int_literal))
-          (expression_statement
-            (call_expression
-              (identifier)
-              (argument_list))))))))
+      (statement_list
+        (expression_switch_statement
+          (identifier)
+          (expression_case
+            (expression_list
+              (int_literal))
+            (statement_list
+              (expression_statement
+                (call_expression
+                  (identifier)
+                  (argument_list))))))))))
