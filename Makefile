@@ -4,7 +4,7 @@ endif
 
 LANGUAGE_NAME := tree-sitter-go
 HOMEPAGE_URL := https://github.com/tree-sitter/tree-sitter-go
-VERSION := 0.23.4
+VERSION := 0.25.0
 
 # repository
 SRC_DIR := src
