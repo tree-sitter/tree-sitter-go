@@ -282,7 +282,7 @@ module.exports = grammar({
         $.type_alias,
         seq(
           '(',
-          repeat(seq(choice($.type_spec, $.type_alias), terminator)),
+          optionalTrailingSep(choice($.type_spec, $.type_alias), terminator),
           ')',
         ),
       ),
@@ -946,6 +946,18 @@ module.exports = grammar({
  */
 function sep1(rule, separator) {
   return seq(rule, repeat(seq(separator, rule)));
+}
+
+/**
+ * Creates a rule to match zero or more of the rules separated by {sep},
+ * with an optional one at the end.
+ *
+ * @param {RuleOrLiteral} rule
+ *
+ * @param {RuleOrLiteral} separator
+ */
+function optionalTrailingSep(rule, separator) {
+  return optional(seq(rule, repeat(seq(separator, rule)), optional(separator)));
 }
 
 /**
