@@ -732,12 +732,12 @@ module.exports = grammar({
       field('field', $._field_identifier),
     )),
 
-    index_expression: $ => prec(PREC.primary, seq(
+    index_expression: $ => prec(PREC.primary, prec.dynamic(1, seq(
       field('operand', $._expression),
       '[',
       field('index', $._expression),
       ']',
-    )),
+    ))),
 
     slice_expression: $ => prec(PREC.primary, seq(
       field('operand', $._expression),
