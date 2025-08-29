@@ -438,11 +438,11 @@ module.exports = grammar({
 
     block: $ => seq(
       '{',
-      optional($._statement_list),
+      optional($.statement_list),
       '}',
     ),
 
-    _statement_list: $ => choice(
+    statement_list: $ => choice(
       seq(
         $._statement,
         repeat(seq(terminator, $._statement)),
@@ -606,13 +606,13 @@ module.exports = grammar({
       'case',
       field('value', $.expression_list),
       ':',
-      optional($._statement_list),
+      optional($.statement_list),
     ),
 
     default_case: $ => seq(
       'default',
       ':',
-      optional($._statement_list),
+      optional($.statement_list),
     ),
 
     type_switch_statement: $ => seq(
@@ -640,7 +640,7 @@ module.exports = grammar({
       'case',
       field('type', commaSep1($._type)),
       ':',
-      optional($._statement_list),
+      optional($.statement_list),
     ),
 
     select_statement: $ => seq(
@@ -654,7 +654,7 @@ module.exports = grammar({
       'case',
       field('communication', choice($.send_statement, $.receive_statement)),
       ':',
-      optional($._statement_list),
+      optional($.statement_list),
     ),
 
     _expression: $ => choice(

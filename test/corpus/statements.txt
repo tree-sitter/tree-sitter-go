@@ -18,16 +18,17 @@ func main() {
     (identifier)
     (parameter_list)
     (block
-      (var_declaration
-        (var_spec
-          (identifier)
-          (expression_list
-            (identifier))))
-      (const_declaration
-        (const_spec
-          (identifier)
-          (expression_list
-            (int_literal)))))))
+      (statement_list
+        (var_declaration
+          (var_spec
+            (identifier)
+            (expression_list
+              (identifier))))
+        (const_declaration
+          (const_spec
+            (identifier)
+            (expression_list
+              (int_literal))))))))
 
 ================================================================================
 Expression statements
@@ -48,11 +49,12 @@ func main() {
     (identifier)
     (parameter_list)
     (block
-      (expression_statement
-        (call_expression
-          (identifier)
-          (argument_list
-            (int_literal)))))))
+      (statement_list
+        (expression_statement
+          (call_expression
+            (identifier)
+            (argument_list
+              (int_literal))))))))
 
 ================================================================================
 Send statements
@@ -73,9 +75,10 @@ func main() {
     (identifier)
     (parameter_list)
     (block
-      (send_statement
-        (identifier)
-        (int_literal)))))
+      (statement_list
+        (send_statement
+          (identifier)
+          (int_literal))))))
 
 ================================================================================
 Increment/Decrement statements
@@ -97,10 +100,11 @@ func main() {
     (identifier)
     (parameter_list)
     (block
-      (inc_statement
-        (identifier))
-      (dec_statement
-        (identifier)))))
+      (statement_list
+        (inc_statement
+          (identifier))
+        (dec_statement
+          (identifier))))))
 
 ================================================================================
 Assignment statements
@@ -133,73 +137,74 @@ func main() {
     (identifier)
     (parameter_list)
     (block
-      (assignment_statement
-        (expression_list
-          (identifier))
-        (expression_list
-          (int_literal)))
-      (assignment_statement
-        (expression_list
-          (identifier)
-          (identifier))
-        (expression_list
-          (int_literal)
-          (int_literal)))
-      (assignment_statement
-        (expression_list
-          (identifier))
-        (expression_list
-          (int_literal)))
-      (assignment_statement
-        (expression_list
-          (identifier))
-        (expression_list
-          (int_literal)))
-      (assignment_statement
-        (expression_list
-          (identifier))
-        (expression_list
-          (int_literal)))
-      (assignment_statement
-        (expression_list
-          (identifier))
-        (expression_list
-          (int_literal)))
-      (assignment_statement
-        (expression_list
-          (identifier))
-        (expression_list
-          (int_literal)))
-      (assignment_statement
-        (expression_list
-          (identifier))
-        (expression_list
-          (int_literal)))
-      (assignment_statement
-        (expression_list
-          (identifier))
-        (expression_list
-          (int_literal)))
-      (assignment_statement
-        (expression_list
-          (identifier))
-        (expression_list
-          (int_literal)))
-      (assignment_statement
-        (expression_list
-          (identifier))
-        (expression_list
-          (int_literal)))
-      (assignment_statement
-        (expression_list
-          (identifier))
-        (expression_list
-          (int_literal)))
-      (assignment_statement
-        (expression_list
-          (identifier))
-        (expression_list
-          (int_literal))))))
+      (statement_list
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (int_literal)))
+        (assignment_statement
+          (expression_list
+            (identifier)
+            (identifier))
+          (expression_list
+            (int_literal)
+            (int_literal)))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (int_literal)))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (int_literal)))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (int_literal)))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (int_literal)))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (int_literal)))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (int_literal)))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (int_literal)))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (int_literal)))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (int_literal)))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (int_literal)))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (int_literal)))))))
 
 ================================================================================
 Short var declarations
@@ -220,13 +225,14 @@ func main() {
     (identifier)
     (parameter_list)
     (block
-      (short_var_declaration
-        (expression_list
-          (identifier)
-          (identifier))
-        (expression_list
-          (int_literal)
-          (int_literal))))))
+      (statement_list
+        (short_var_declaration
+          (expression_list
+            (identifier)
+            (identifier))
+          (expression_list
+            (int_literal)
+            (int_literal)))))))
 
 ================================================================================
 If statements
@@ -267,58 +273,66 @@ func main() {
     name: (identifier)
     parameters: (parameter_list)
     body: (block
-      (if_statement
-        condition: (identifier)
-        consequence: (block
-          (expression_statement
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list)))))
-      (if_statement
-        initializer: (short_var_declaration
-          left: (expression_list
-            (identifier))
-          right: (expression_list
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list))))
-        condition: (identifier)
-        consequence: (block
-          (expression_statement
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list)))))
-      (if_statement
-        condition: (identifier)
-        consequence: (block
-          (expression_statement
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list))))
-        alternative: (block
-          (expression_statement
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list)))))
-      (if_statement
-        condition: (identifier)
-        consequence: (block
-          (expression_statement
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list))))
-        alternative: (if_statement
+      (statement_list
+        (if_statement
           condition: (identifier)
           consequence: (block
-            (expression_statement
+            (statement_list
+              (expression_statement
+                (call_expression
+                  function: (identifier)
+                  arguments: (argument_list))))))
+        (if_statement
+          initializer: (short_var_declaration
+            left: (expression_list
+              (identifier))
+            right: (expression_list
               (call_expression
                 function: (identifier)
                 arguments: (argument_list))))
+          condition: (identifier)
+          consequence: (block
+            (statement_list
+              (expression_statement
+                (call_expression
+                  function: (identifier)
+                  arguments: (argument_list))))))
+        (if_statement
+          condition: (identifier)
+          consequence: (block
+            (statement_list
+              (expression_statement
+                (call_expression
+                  function: (identifier)
+                  arguments: (argument_list)))))
           alternative: (block
-            (expression_statement
-              (call_expression
-                function: (identifier)
-                arguments: (argument_list)))))))))
+            (statement_list
+              (expression_statement
+                (call_expression
+                  function: (identifier)
+                  arguments: (argument_list))))))
+        (if_statement
+          condition: (identifier)
+          consequence: (block
+            (statement_list
+              (expression_statement
+                (call_expression
+                  function: (identifier)
+                  arguments: (argument_list)))))
+          alternative: (if_statement
+            condition: (identifier)
+            consequence: (block
+              (statement_list
+                (expression_statement
+                  (call_expression
+                    function: (identifier)
+                    arguments: (argument_list)))))
+            alternative: (block
+              (statement_list
+                (expression_statement
+                  (call_expression
+                    function: (identifier)
+                    arguments: (argument_list)))))))))))
 
 ================================================================================
 For statements
@@ -363,71 +377,77 @@ loop2:
     (identifier)
     (parameter_list)
     (block
-      (for_statement
-        (block
-          (expression_statement
-            (call_expression
-              (identifier)
-              (argument_list)))
-          (goto_statement
-            (label_name))))
-      (labeled_statement
-        (label_name)
+      (statement_list
         (for_statement
-          (for_clause
-            (short_var_declaration
-              (expression_list
-                (identifier))
-              (expression_list
-                (int_literal)))
-            (binary_expression
-              (identifier)
-              (int_literal))
-            (inc_statement
-              (identifier)))
           (block
-            (expression_statement
-              (call_expression
+            (statement_list
+              (expression_statement
+                (call_expression
+                  (identifier)
+                  (argument_list)))
+              (goto_statement
+                (label_name)))))
+        (labeled_statement
+          (label_name)
+          (for_statement
+            (for_clause
+              (short_var_declaration
+                (expression_list
+                  (identifier))
+                (expression_list
+                  (int_literal)))
+              (binary_expression
                 (identifier)
-                (argument_list)))
-            (break_statement
-              (label_name)))))
-      (labeled_statement
-        (label_name)
+                (int_literal))
+              (inc_statement
+                (identifier)))
+            (block
+              (statement_list
+                (expression_statement
+                  (call_expression
+                    (identifier)
+                    (argument_list)))
+                (break_statement
+                  (label_name))))))
+        (labeled_statement
+          (label_name)
+          (for_statement
+            (for_clause
+              (binary_expression
+                (identifier)
+                (int_literal))
+              (inc_statement
+                (identifier)))
+            (block
+              (statement_list
+                (expression_statement
+                  (call_expression
+                    (identifier)
+                    (argument_list)))
+                (continue_statement
+                  (label_name))))))
         (for_statement
-          (for_clause
-            (binary_expression
-              (identifier)
-              (int_literal))
-            (inc_statement
-              (identifier)))
+          (for_clause)
           (block
-            (expression_statement
-              (call_expression
-                (identifier)
-                (argument_list)))
-            (continue_statement
-              (label_name)))))
-      (for_statement
-        (for_clause)
-        (block
-          (expression_statement
-            (call_expression
-              (identifier)
-              (argument_list)))
-          (continue_statement)))
-      (for_statement
-        (range_clause
-          (expression_list
+            (statement_list
+              (expression_statement
+                (call_expression
+                  (identifier)
+                  (argument_list)))
+              (continue_statement))))
+        (for_statement
+          (range_clause
+            (expression_list
+              (identifier))
             (identifier))
-          (identifier))
-        (block
-          (expression_statement
-            (call_expression
-              (identifier)
-              (argument_list
-                (identifier))))
-          (break_statement))))))
+          (block
+            (statement_list
+              (expression_statement
+                (call_expression
+                  (identifier)
+                  (argument_list
+                    (identifier))))
+              (break_statement))))))))
 
 ================================================================================
 Switch statements
@@ -461,44 +481,49 @@ func main() {
     name: (identifier)
     parameters: (parameter_list)
     body: (block
-      (expression_switch_statement
-        value: (identifier)
-        (expression_case
-          value: (expression_list
-            (int_literal)
-            (int_literal))
-          (expression_statement
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list)))
-          (fallthrough_statement))
-        (expression_case
-          value: (expression_list
-            (int_literal))
-          (expression_statement
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list))))
-        (default_case
-          (expression_statement
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list)))
-          (break_statement)))
-      (expression_switch_statement
-        (expression_case
-          value: (expression_list
-            (true))
-          (return_statement)))
-      (expression_switch_statement
-        initializer: (short_var_declaration
-          left: (expression_list
-            (identifier))
-          right: (expression_list
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list))))
-        value: (identifier)))))
+      (statement_list
+        (expression_switch_statement
+          value: (identifier)
+          (expression_case
+            value: (expression_list
+              (int_literal)
+              (int_literal))
+            (statement_list
+              (expression_statement
+                (call_expression
+                  function: (identifier)
+                  arguments: (argument_list)))
+              (fallthrough_statement)))
+          (expression_case
+            value: (expression_list
+              (int_literal))
+            (statement_list
+              (expression_statement
+                (call_expression
+                  function: (identifier)
+                  arguments: (argument_list)))))
+          (default_case
+            (statement_list
+              (expression_statement
+                (call_expression
+                  function: (identifier)
+                  arguments: (argument_list)))
+              (break_statement))))
+        (expression_switch_statement
+          (expression_case
+            value: (expression_list
+              (true))
+            (statement_list
+              (return_statement))))
+        (expression_switch_statement
+          initializer: (short_var_declaration
+            left: (expression_list
+              (identifier))
+            right: (expression_list
+              (call_expression
+                function: (identifier)
+                arguments: (argument_list))))
+          value: (identifier))))))
 
 ================================================================================
 Type switch statements
@@ -534,72 +559,81 @@ func main() {
     name: (identifier)
     parameters: (parameter_list)
     body: (block
-      (type_switch_statement
-        value: (identifier)
-        (type_case
-          type: (slice_type
-            element: (type_identifier))
-          (expression_statement
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list))))
-        (type_case
-          type: (pointer_type
-            (type_identifier))
-          (break_statement)))
-      (type_switch_statement
-        alias: (expression_list
-          (identifier))
-        value: (identifier)
-        (type_case
-          type: (type_identifier)
-          (expression_statement
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list
-                (interpreted_string_literal
-                  (interpreted_string_literal_content))))))
-        (type_case
-          type: (type_identifier)
-          (expression_statement
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list
-                (identifier)))))
-        (type_case
-          type: (type_identifier)
-          (expression_statement
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list
-                (identifier)))))
-        (type_case
-          type: (function_type
-            parameters: (parameter_list
-              (parameter_declaration
-                type: (type_identifier)))
-            result: (type_identifier))
-          (expression_statement
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list
-                (identifier)))))
-        (type_case
-          type: (type_identifier)
-          type: (type_identifier)
-          (expression_statement
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list
-                (interpreted_string_literal
-                  (interpreted_string_literal_content))))))
-        (default_case
-          (expression_statement
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list
-                (interpreted_string_literal
-                  (interpreted_string_literal_content))))))))))
+      (statement_list
+        (type_switch_statement
+          value: (identifier)
+          (type_case
+            type: (slice_type
+              element: (type_identifier))
+            (statement_list
+              (expression_statement
+                (call_expression
+                  function: (identifier)
+                  arguments: (argument_list)))))
+          (type_case
+            type: (pointer_type
+              (type_identifier))
+            (statement_list
+              (break_statement))))
+        (type_switch_statement
+          alias: (expression_list
+            (identifier))
+          value: (identifier)
+          (type_case
+            type: (type_identifier)
+            (statement_list
+              (expression_statement
+                (call_expression
+                  function: (identifier)
+                  arguments: (argument_list
+                    (interpreted_string_literal
+                      (interpreted_string_literal_content)))))))
+          (type_case
+            type: (type_identifier)
+            (statement_list
+              (expression_statement
+                (call_expression
+                  function: (identifier)
+                  arguments: (argument_list
+                    (identifier))))))
+          (type_case
+            type: (type_identifier)
+            (statement_list
+              (expression_statement
+                (call_expression
+                  function: (identifier)
+                  arguments: (argument_list
+                    (identifier))))))
+          (type_case
+            type: (function_type
+              parameters: (parameter_list
+                (parameter_declaration
+                  type: (type_identifier)))
+              result: (type_identifier))
+            (statement_list
+              (expression_statement
+                (call_expression
+                  function: (identifier)
+                  arguments: (argument_list
+                    (identifier))))))
+          (type_case
+            type: (type_identifier)
+            type: (type_identifier)
+            (statement_list
+              (expression_statement
+                (call_expression
+                  function: (identifier)
+                  arguments: (argument_list
+                    (interpreted_string_literal
+                      (interpreted_string_literal_content)))))))
+          (default_case
+            (statement_list
+              (expression_statement
+                (call_expression
+                  function: (identifier)
+                  arguments: (argument_list
+                    (interpreted_string_literal
+                      (interpreted_string_literal_content))))))))))))
 
 ================================================================================
 Select statements
@@ -629,43 +663,48 @@ func main() {
     name: (identifier)
     parameters: (parameter_list)
     body: (block
-      (select_statement
-        (communication_case
-          communication: (receive_statement
-            left: (expression_list
-              (identifier))
-            right: (unary_expression
-              operand: (identifier)))
-          (expression_statement
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list
-                (identifier)))))
-        (communication_case
-          communication: (send_statement
-            channel: (identifier)
-            value: (identifier))
-          (expression_statement
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list
-                (int_literal)))))
-        (communication_case
-          communication: (receive_statement
-            right: (unary_expression
-              operand: (call_expression
-                function: (selector_expression
-                  operand: (identifier)
-                  field: (field_identifier))
-                arguments: (argument_list
-                  (int_literal)))))
-          (expression_statement
-            (call_expression
-              function: (identifier)
-              arguments: (argument_list
-                (int_literal)))))
-        (default_case
-          (return_statement))))))
+      (statement_list
+        (select_statement
+          (communication_case
+            communication: (receive_statement
+              left: (expression_list
+                (identifier))
+              right: (unary_expression
+                operand: (identifier)))
+            (statement_list
+              (expression_statement
+                (call_expression
+                  function: (identifier)
+                  arguments: (argument_list
+                    (identifier))))))
+          (communication_case
+            communication: (send_statement
+              channel: (identifier)
+              value: (identifier))
+            (statement_list
+              (expression_statement
+                (call_expression
+                  function: (identifier)
+                  arguments: (argument_list
+                    (int_literal))))))
+          (communication_case
+            communication: (receive_statement
+              right: (unary_expression
+                operand: (call_expression
+                  function: (selector_expression
+                    operand: (identifier)
+                    field: (field_identifier))
+                  arguments: (argument_list
+                    (int_literal)))))
+            (statement_list
+              (expression_statement
+                (call_expression
+                  function: (identifier)
+                  arguments: (argument_list
+                    (int_literal))))))
+          (default_case
+            (statement_list
+              (return_statement))))))))
 
 ================================================================================
 Go and defer statements
@@ -687,18 +726,19 @@ func main() {
     (identifier)
     (parameter_list)
     (block
-      (defer_statement
-        (call_expression
-          (selector_expression
-            (identifier)
-            (field_identifier))
-          (argument_list)))
-      (go_statement
-        (call_expression
-          (selector_expression
-            (identifier)
-            (field_identifier))
-          (argument_list))))))
+      (statement_list
+        (defer_statement
+          (call_expression
+            (selector_expression
+              (identifier)
+              (field_identifier))
+            (argument_list)))
+        (go_statement
+          (call_expression
+            (selector_expression
+              (identifier)
+              (field_identifier))
+            (argument_list)))))))
 
 ================================================================================
 Nested statement blocks
@@ -720,20 +760,23 @@ func main() {
     (identifier)
     (parameter_list)
     (block
-      (block
-        (expression_statement
-          (call_expression
-            (identifier)
-            (argument_list
-              (interpreted_string_literal
-                (interpreted_string_literal_content))))))
-      (block
-        (expression_statement
-          (call_expression
-            (identifier)
-            (argument_list
-              (interpreted_string_literal
-                (interpreted_string_literal_content)))))))))
+      (statement_list
+        (block
+          (statement_list
+            (expression_statement
+              (call_expression
+                (identifier)
+                (argument_list
+                  (interpreted_string_literal
+                    (interpreted_string_literal_content)))))))
+        (block
+          (statement_list
+            (expression_statement
+              (call_expression
+                (identifier)
+                (argument_list
+                  (interpreted_string_literal
+                    (interpreted_string_literal_content)))))))))))
 
 ================================================================================
 Labels at the ends of statement blocks
@@ -752,9 +795,11 @@ func main() {
     name: (identifier)
     parameters: (parameter_list)
     body: (block
-      (block
-        (labeled_statement
-          label: (label_name))))))
+      (statement_list
+        (block
+          (statement_list
+            (labeled_statement
+              label: (label_name))))))))
 
 ================================================================================
 Empty statements
@@ -775,7 +820,8 @@ func main() {
     (identifier)
     (parameter_list)
     (block
-      (empty_statement))))
+      (statement_list
+        (empty_statement)))))
 
 ================================================================================
 Nested control statements
@@ -802,35 +848,39 @@ func main() {
     (identifier)
     (parameter_list)
     (block
-      (for_statement
-        (range_clause
-          (expression_list
-            (identifier)
+      (statement_list
+        (for_statement
+          (range_clause
+            (expression_list
+              (identifier)
+              (identifier))
             (identifier))
-          (identifier))
-        (block
-          (expression_statement
-            (call_expression
-              (func_literal
-                (parameter_list)
-                (block
-                  (if_statement
-                    (binary_expression
-                      (identifier)
-                      (identifier))
+          (block
+            (statement_list
+              (expression_statement
+                (call_expression
+                  (func_literal
+                    (parameter_list)
                     (block
-                      (expression_statement
-                        (call_expression
-                          (selector_expression
+                      (statement_list
+                        (if_statement
+                          (binary_expression
                             (identifier)
-                            (field_identifier))
-                          (argument_list
-                            (interpreted_string_literal
-                              (interpreted_string_literal_content))
-                            (index_expression
-                              (identifier)
-                              (identifier)))))))))
-              (argument_list))))))))
+                            (identifier))
+                          (block
+                            (statement_list
+                              (expression_statement
+                                (call_expression
+                                  (selector_expression
+                                    (identifier)
+                                    (field_identifier))
+                                  (argument_list
+                                    (interpreted_string_literal
+                                      (interpreted_string_literal_content))
+                                    (index_expression
+                                      (identifier)
+                                      (identifier)))))))))))
+                  (argument_list))))))))))
 
 ================================================================================
 Top-level statements
