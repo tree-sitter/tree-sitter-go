@@ -10,7 +10,6 @@ const napi_type_tag LANGUAGE_TYPE_TAG = {
 };
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
-    exports["name"] = Napi::String::New(env, "go");
     auto language = Napi::External<TSLanguage>::New(env, tree_sitter_go());
     language.TypeTag(&LANGUAGE_TYPE_TAG);
     exports["language"] = language;
