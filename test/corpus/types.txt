@@ -78,6 +78,9 @@ type s3 struct {
 
   // a tag
   h int `json:"h"`
+
+  // multiple tags
+  i int `json:"i" xml:"i"`
 }
 
 type g1 struct {
@@ -127,8 +130,24 @@ type g2[T, U any, V interface{}, W Foo[Bar[T]]] struct {}
           (field_declaration
             (field_identifier)
             (type_identifier)
-            (raw_string_literal
-              (raw_string_literal_content)))))))
+            (struct_tag
+              (struct_tag_pair
+                (tag_name)
+                (interpreted_string_literal
+                      (interpreted_string_literal_content)))))
+          (comment)
+          (field_declaration
+            (field_identifier)
+            (type_identifier)
+            (struct_tag
+              (struct_tag_pair
+                (tag_name)
+                (interpreted_string_literal
+                  (interpreted_string_literal_content)))
+              (struct_tag_pair
+                (tag_name)
+                (interpreted_string_literal
+                  (interpreted_string_literal_content)))))))))
   (type_declaration
     (type_spec
       (type_identifier)

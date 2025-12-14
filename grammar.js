@@ -389,7 +389,19 @@ module.exports = grammar({
           )),
         ),
       ),
-      field('tag', optional($._string_literal)),
+      field('tag', optional($.struct_tag)),
+    ),
+
+    struct_tag: $ => seq(
+      '`',
+      repeat($.struct_tag_pair),
+      '`',
+    ),
+
+    struct_tag_pair: $ => seq(
+      field('key', alias($.identifier, $.tag_name)),
+      ':',
+      field('value', $.interpreted_string_literal),
     ),
 
     interface_type: $ => seq(

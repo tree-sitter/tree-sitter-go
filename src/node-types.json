@@ -925,11 +925,7 @@
         "required": false,
         "types": [
           {
-            "type": "interpreted_string_literal",
-            "named": true
-          },
-          {
-            "type": "raw_string_literal",
+            "type": "struct_tag",
             "named": true
           }
         ]
@@ -2105,6 +2101,47 @@
     }
   },
   {
+    "type": "struct_tag",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "struct_tag_pair",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "struct_tag_pair",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tag_name",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "interpreted_string_literal",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "struct_type",
     "named": true,
     "fields": {},
@@ -2951,6 +2988,10 @@
   {
     "type": "switch",
     "named": false
+  },
+  {
+    "type": "tag_name",
+    "named": true
   },
   {
     "type": "true",
