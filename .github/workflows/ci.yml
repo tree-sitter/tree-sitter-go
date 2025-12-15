@@ -81,7 +81,7 @@ jobs:
             examples/go/test/syntax/vareq1.go
             examples/go/test/typeparam/issue*.go
             examples/moby/daemon/logger/journald/read_test.go
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         if: steps.examples.outputs.failures != ''
         with:
           name: failures-${{matrix.os}}
