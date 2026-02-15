@@ -93,6 +93,7 @@ module.exports = grammar({
     [$.type_parameter_declaration, $._simple_type, $._expression],
     [$.type_parameter_declaration, $._expression],
     [$.type_parameter_declaration, $._simple_type, $.generic_type, $._expression],
+    [$._builtin_callee, $._expression],
   ],
 
   reserved: {
@@ -690,16 +691,35 @@ module.exports = grammar({
     ),
 
     call_expression: $ => prec(PREC.primary, choice(
-      seq(
-        field('function', alias(choice('new', 'make'), $.identifier)),
-        field('arguments', alias($.special_argument_list, $.argument_list)),
-      ),
+      prec.dynamic(2, seq(
+          field('function', $._builtin_callee),
+          field('type_arguments', optional($.type_arguments)),
+          field('arguments', alias($.builtin_argument_list, $.argument_list)),
+        )),
       seq(
         field('function', $._expression),
         field('type_arguments', optional($.type_arguments)),
         field('arguments', $.argument_list),
       ),
     )),
+
+    _builtin_callee: $ => alias(choice('new', 'make'), $.identifier),
+
+    builtin_argument_list: $ => seq(
+      '(',
+      // First element can be a type (preferred) or expression (fallback)
+      choice(
+        prec.dynamic(2, $._type),
+        prec.dynamic(1, $._expression),
+      ),
+      optional(seq(
+        ',',
+        commaSep($._expression),
+        optional(','),
+      )),
+      ')',
+    ),
+
 
     variadic_argument: $ => prec.right(seq(
       $._expression,
@@ -708,8 +728,8 @@ module.exports = grammar({
 
     special_argument_list: $ => seq(
       '(',
+      $._type,
       optional(seq(
-        $._type,
         repeat(seq(',', $._expression)),
         optional(','),
       )),
