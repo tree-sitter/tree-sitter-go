@@ -485,3 +485,314 @@ func main() {
               (call_expression
                 (identifier)
                 (argument_list)))))))))
+
+================================================================================
+Custom make/new function
+================================================================================
+
+package main
+
+func make(x int) int { return x + 1 }
+func new(x int) int { return x + 1 }
+
+func f() {
+  _ = new([]int)
+  _ = make([]int, 3)
+  _ = make(map[string]int)
+  _ = make(chan int, 2)
+
+  // Shadowing sanity: should parse as normal call
+  x := make(1)
+  y := new(1)
+  _ = x
+  _ = y
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (package_clause
+    (package_identifier))
+  (function_declaration
+    (identifier)
+    (parameter_list
+      (parameter_declaration
+        (identifier)
+        (type_identifier)))
+    (type_identifier)
+    (block
+      (statement_list
+        (return_statement
+          (expression_list
+            (binary_expression
+              (identifier)
+              (int_literal)))))))
+  (function_declaration
+    (identifier)
+    (parameter_list
+      (parameter_declaration
+        (identifier)
+        (type_identifier)))
+    (type_identifier)
+    (block
+      (statement_list
+        (return_statement
+          (expression_list
+            (binary_expression
+              (identifier)
+              (int_literal)))))))
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (statement_list
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (argument_list
+                (slice_type
+                  (type_identifier))))))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (argument_list
+                (slice_type
+                  (type_identifier))
+                (int_literal)))))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (argument_list
+                (map_type
+                  (type_identifier)
+                  (type_identifier))))))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (argument_list
+                (channel_type
+                  (type_identifier))
+                (int_literal)))))
+        (comment)
+        (short_var_declaration
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (argument_list
+                (int_literal)))))
+        (short_var_declaration
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (argument_list
+                (int_literal)))))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (identifier)))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (identifier)))))))
+
+================================================================================
+Custom make/new function with generic parameters
+================================================================================
+
+package main
+
+func make[T any](x T) T { return x }
+func new[T any](x T) T { return x }
+
+func f() {
+  _ = new([]int)
+  _ = make([]int, 3)
+  _ = make(map[string]int)
+  _ = make(chan int, 2)
+
+  // Shadowing sanity: should parse as normal call
+  x := make[int](1)
+  y := new[int](1)
+  _ = x
+  _ = y
+
+  w := make[[]int]([]int{})
+  z := new[[]int]([]int{})
+  _ = w
+  _ = z
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (package_clause
+    (package_identifier))
+  (function_declaration
+    (identifier)
+    (type_parameter_list
+      (type_parameter_declaration
+        (identifier)
+        (type_constraint
+          (type_identifier))))
+    (parameter_list
+      (parameter_declaration
+        (identifier)
+        (type_identifier)))
+    (type_identifier)
+    (block
+      (statement_list
+        (return_statement
+          (expression_list
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (type_parameter_list
+      (type_parameter_declaration
+        (identifier)
+        (type_constraint
+          (type_identifier))))
+    (parameter_list
+      (parameter_declaration
+        (identifier)
+        (type_identifier)))
+    (type_identifier)
+    (block
+      (statement_list
+        (return_statement
+          (expression_list
+            (identifier))))))
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (statement_list
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (argument_list
+                (slice_type
+                  (type_identifier))))))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (argument_list
+                (slice_type
+                  (type_identifier))
+                (int_literal)))))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (argument_list
+                (map_type
+                  (type_identifier)
+                  (type_identifier))))))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (argument_list
+                (channel_type
+                  (type_identifier))
+                (int_literal)))))
+        (comment)
+        (short_var_declaration
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (type_arguments
+                (type_elem
+                  (type_identifier)))
+              (argument_list
+                (int_literal)))))
+        (short_var_declaration
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (type_arguments
+                (type_elem
+                  (type_identifier)))
+              (argument_list
+                (int_literal)))))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (identifier)))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (identifier)))
+        (short_var_declaration
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (type_arguments
+                (type_elem
+                  (slice_type
+                    (type_identifier))))
+              (argument_list
+                (composite_literal
+                  (slice_type
+                    (type_identifier))
+                  (literal_value))))))
+        (short_var_declaration
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (type_arguments
+                (type_elem
+                  (slice_type
+                    (type_identifier))))
+              (argument_list
+                (composite_literal
+                  (slice_type
+                    (type_identifier))
+                  (literal_value))))))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (identifier)))
+        (assignment_statement
+          (expression_list
+            (identifier))
+          (expression_list
+            (identifier)))))))
