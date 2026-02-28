@@ -38,6 +38,8 @@ jobs:
         run: |-
           git clone https://github.com/golang/go examples/go --single-branch --depth=1 --filter=blob:none
           git clone https://github.com/moby/moby examples/moby --single-branch --depth=1 --filter=blob:none
+      - name: Install tree-sitter peer dependency
+        run: npm install tree-sitter
       - name: Run tests
         uses: tree-sitter/parser-test-action@v3
         with:
