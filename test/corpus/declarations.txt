@@ -549,6 +549,7 @@ package main
 func (self Person) Equals(other Person) bool {}
 func (v *Value) ObjxMap(optionalDefault ...(Map)) Map {}
 func (p *T1) M1()
+func (p Pair[A, B]) Map[C comparable](value C) C {}
 
 --------------------------------------------------------------------------------
 
@@ -588,7 +589,30 @@ func (p *T1) M1()
         (pointer_type
           (type_identifier))))
     (field_identifier)
-    (parameter_list)))
+    (parameter_list))
+  (method_declaration
+    (parameter_list
+      (parameter_declaration
+        (identifier)
+        (generic_type
+          (type_identifier)
+          (type_arguments
+            (type_elem
+              (type_identifier))
+            (type_elem
+              (type_identifier))))))
+    (field_identifier)
+    (type_parameter_list
+      (type_parameter_declaration
+        (identifier)
+        (type_constraint
+          (type_identifier))))
+    (parameter_list
+      (parameter_declaration
+        (identifier)
+        (type_identifier)))
+    (type_identifier)
+    (block)))
 
 ================================================================================
 Type declarations
