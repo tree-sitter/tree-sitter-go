@@ -702,6 +702,22 @@
           },
           {
             "type": "FIELD",
+            "name": "type_parameters",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "type_parameter_list"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          },
+          {
+            "type": "FIELD",
             "name": "parameters",
             "content": {
               "type": "SYMBOL",
@@ -7030,6 +7046,10 @@
     ],
     [
       "parameter_declaration",
+      "_simple_type"
+    ],
+    [
+      "type_parameter_declaration",
       "_simple_type"
     ],
     [
