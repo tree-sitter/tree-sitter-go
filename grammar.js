@@ -93,6 +93,7 @@ module.exports = grammar({
     [$.type_parameter_declaration, $._simple_type, $._expression],
     [$.type_parameter_declaration, $._expression],
     [$.type_parameter_declaration, $._simple_type, $.generic_type, $._expression],
+    [$.special_argument_list, $.argument_list],
   ],
 
   reserved: {
@@ -691,8 +692,15 @@ module.exports = grammar({
 
     call_expression: $ => prec(PREC.primary, choice(
       seq(
-        field('function', alias(choice('new', 'make'), $.identifier)),
+        field('function', alias('make', $.identifier)),
         field('arguments', alias($.special_argument_list, $.argument_list)),
+      ),
+      seq(
+        field('function', alias('new', $.identifier)),
+        field('arguments', choice(
+          alias($.special_argument_list, $.argument_list),
+          $.argument_list),
+        ),
       ),
       seq(
         field('function', $._expression),

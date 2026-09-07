@@ -3481,17 +3481,8 @@
                 "content": {
                   "type": "ALIAS",
                   "content": {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "STRING",
-                        "value": "new"
-                      },
-                      {
-                        "type": "STRING",
-                        "value": "make"
-                      }
-                    ]
+                    "type": "STRING",
+                    "value": "make"
                   },
                   "named": true,
                   "value": "identifier"
@@ -3508,6 +3499,46 @@
                   },
                   "named": true,
                   "value": "argument_list"
+                }
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "function",
+                "content": {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "STRING",
+                    "value": "new"
+                  },
+                  "named": true,
+                  "value": "identifier"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "arguments",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "special_argument_list"
+                      },
+                      "named": true,
+                      "value": "argument_list"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "argument_list"
+                    }
+                  ]
                 }
               }
             ]
@@ -7046,6 +7077,10 @@
       "_simple_type",
       "generic_type",
       "_expression"
+    ],
+    [
+      "special_argument_list",
+      "argument_list"
     ]
   ],
   "precedences": [],

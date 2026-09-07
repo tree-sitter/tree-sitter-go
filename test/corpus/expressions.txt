@@ -221,6 +221,41 @@ func fake_new(new func() int) int {
               (argument_list))))))))
 
 ================================================================================
+Calls to 'new'
+================================================================================
+
+package main
+
+func main() {
+  new(map[string]string)
+  new("hello")
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (package_clause
+    (package_identifier))
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (statement_list
+        (expression_statement
+          (call_expression
+            (identifier)
+            (argument_list
+              (map_type
+                (type_identifier)
+                (type_identifier)))))
+        (expression_statement
+          (call_expression
+            (identifier)
+            (argument_list
+              (interpreted_string_literal
+                (interpreted_string_literal_content)))))))))
+
+================================================================================
 Selector expressions
 ================================================================================
 
