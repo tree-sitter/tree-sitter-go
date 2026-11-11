@@ -485,3 +485,97 @@ func main() {
               (call_expression
                 (identifier)
                 (argument_list)))))))))
+
+================================================================================
+Go 1.26 new with an expression argument
+================================================================================
+
+package main
+
+func main() {
+  a := new(T)
+  b := new([]int)
+  c := new(int32(101))
+  d := new(cfg.Timeout)
+  e := new("x")
+  f := new(f())
+  g := new(x + 1)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (package_clause
+    (package_identifier))
+  (function_declaration
+    (identifier)
+    (parameter_list)
+    (block
+      (statement_list
+        (short_var_declaration
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (argument_list
+                (type_identifier)))))
+        (short_var_declaration
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (argument_list
+                (slice_type
+                  (type_identifier))))))
+        (short_var_declaration
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (argument_list
+                (call_expression
+                  (identifier)
+                  (argument_list
+                    (int_literal)))))))
+        (short_var_declaration
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (argument_list
+                (qualified_type
+                  (package_identifier)
+                  (type_identifier))))))
+        (short_var_declaration
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (argument_list
+                (interpreted_string_literal
+                  (interpreted_string_literal_content))))))
+        (short_var_declaration
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (argument_list
+                (call_expression
+                  (identifier)
+                  (argument_list))))))
+        (short_var_declaration
+          (expression_list
+            (identifier))
+          (expression_list
+            (call_expression
+              (identifier)
+              (argument_list
+                (binary_expression
+                  (identifier)
+                  (int_literal))))))))))
