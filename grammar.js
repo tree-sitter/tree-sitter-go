@@ -709,7 +709,9 @@ module.exports = grammar({
     special_argument_list: $ => seq(
       '(',
       optional(seq(
-        $._type,
+        // Go 1.26: `new` takes a value as well as a type. The type reading is
+        // preferred (dynamic precedence) so `new(int)` / `new(T)` are unchanged.
+        choice(prec.dynamic(2, $._type), $._expression),
         repeat(seq(',', $._expression)),
         optional(','),
       )),
